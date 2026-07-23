@@ -302,7 +302,7 @@ button,input,select{font:inherit;color:inherit}
 .fab:hover{transform:translateY(-2px)}
 .fab svg{width:19px;height:19px;flex:none}
 
-/* ---------- modal ---------- */
+/* ---------- modal de vista rápida (destaques da homepage) ---------- */
 .modal{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:18px;background:rgba(18,12,18,.55);backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .25s var(--ease)}
 .modal.aberto{opacity:1;pointer-events:auto}
 .mbox{background:#fff;border-radius:20px;max-width:880px;width:100%;max-height:calc(100vh - 36px);overflow:auto;transform:translateY(14px) scale(.98);transition:transform .3s var(--ease)}
@@ -310,9 +310,13 @@ button,input,select{font:inherit;color:inherit}
 .mmedia{position:relative;aspect-ratio:16/7.6;background:var(--bg-2);overflow:hidden}
 .mmedia svg,.mmedia img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .mmedia .pbadge{position:absolute;top:14px;left:14px}
+
+/* ---------- botão de fechar reutilizável (modal, menu móvel, painel de filtros) ---------- */
 .mclose{position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:50%;border:0;background:rgba(255,255,255,.95);display:grid;place-items:center;cursor:pointer;box-shadow:var(--sh-1)}
 .mclose--static{position:static}
 .mclose svg{width:16px;height:16px;color:var(--ink)}
+
+/* ---------- conteúdo de ficha de imóvel (reutilizado em imovel.html) ---------- */
 .mbody{padding:clamp(20px,3vw,30px);display:grid;grid-template-columns:1.5fr 1fr;gap:clamp(20px,3vw,34px)}
 .mtitle{font-family:var(--serif);font-size:clamp(20px,2.4vw,25px);font-weight:600;letter-spacing:-.005em;margin:0 0 8px;line-height:1.2}
 .mprice{font-size:clamp(24px,3vw,30px);font-weight:800;letter-spacing:-.02em;margin:14px 0 0}
@@ -456,6 +460,43 @@ body.travado{overflow:hidden}
 @media(max-width:640px){
   .ftoolbar{gap:10px}
   .fordem{margin-left:0;width:100%;justify-content:space-between}
+}
+
+/* ==========================================================
+   PÁGINA DE FICHA (imovel.html)
+   ========================================================== */
+.dnotfound{padding:clamp(70px,10vw,120px) 20px;text-align:center}
+.dnotfound h1{font-family:var(--serif);font-size:clamp(24px,3vw,32px);font-weight:600;margin:0 0 10px}
+.dnotfound p{color:var(--mut);font-weight:600;margin:0 0 24px}
+
+.dcrumb-band{padding:16px 0 0}
+
+.dhero{position:relative;width:100%;height:clamp(300px,46vw,520px);background:var(--bg-2);overflow:hidden;margin-top:14px}
+.dhero img{width:100%;height:100%;object-fit:cover;display:block}
+.dhero .pbadge{position:absolute;top:20px;left:20px}
+.dhero .pheart{top:20px;right:20px;width:44px;height:44px}
+
+.dtitle{font-family:var(--serif);font-size:clamp(28px,3.6vw,42px);font-weight:600;letter-spacing:-.01em;line-height:1.12;margin:22px 0 10px}
+
+.dsection{padding-top:26px;margin-top:26px;border-top:1px solid var(--line)}
+.dsection h2{font-family:var(--serif);font-size:19px;font-weight:600;margin:0 0 10px;letter-spacing:-.005em}
+.dtext{font-size:14px;color:var(--mut);font-weight:600;margin:0}
+
+.damenities{grid-template-columns:1fr}
+@media(min-width:560px){.damenities{grid-template-columns:repeat(2,1fr)}}
+
+.dmapa{position:relative;height:260px;border-radius:var(--r-card);overflow:hidden;margin-top:14px;background:var(--bg-2)}
+.dmapa iframe{position:absolute;inset:0;width:100%;height:100%;border:0;pointer-events:none}
+.dmapa-btn{position:absolute;right:12px;bottom:12px;z-index:2;background:#fff;border-radius:999px;padding:9px 15px;font-size:12px;font-weight:800;color:var(--ink);box-shadow:var(--sh-1);transition:transform .2s var(--ease)}
+.dmapa-btn:hover{transform:translateY(-1px)}
+
+.dtrust{display:flex;gap:8px;align-items:flex-start;margin-top:16px;font-size:12px;font-weight:700;color:var(--mut);line-height:1.5}
+.dtrust svg{width:16px;height:16px;color:var(--red-500);flex:none;margin-top:1px}
+.dcopiar{display:block;width:100%;text-align:center;border:0;background:none;color:var(--red-600);font-size:12.5px;font-weight:800;cursor:pointer;padding:0;margin-top:14px}
+.dcopiar:hover{text-decoration:underline}
+
+@media(max-width:1020px){
+  .dtitle{margin-top:18px}
 }
 
 @media(prefers-reduced-motion:reduce){

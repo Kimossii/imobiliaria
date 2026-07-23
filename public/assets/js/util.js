@@ -29,13 +29,13 @@ function mediaHtml(i){
 function cartao(i,moeda){
   var badge=i.neg==="venda"?'<span class="pbadge pbadge--venda">Venda</span>':'<span class="pbadge">Arrendamento</span>';
   var saved=Guardados.tem(i.ref)?" saved":"";
-  return '<article class="pcard" data-ref="'+i.ref+'" tabindex="0" role="button" aria-label="Ver ficha: '+i.t+'">'
+  return '<a class="pcard" href="imovel.html?ref='+encodeURIComponent(i.ref)+'" data-ref="'+i.ref+'" aria-label="Ver ficha: '+i.t+'">'
     +'<div class="pmedia">'+mediaHtml(i)+badge
     +'<button class="pheart'+saved+'" data-heart="'+i.ref+'" aria-label="Guardar imóvel"><svg aria-hidden="true"><use href="#ic-heart"/></svg></button></div>'
     +'<div class="pbody"><div class="pprice">'+fmtPreco(i,moeda)+"</div>"
     +'<h3 class="ptitle">'+i.t+"</h3>"
     +'<p class="pplace"><svg aria-hidden="true"><use href="#ic-pin"/></svg>'+i.zona+" · "+i.sub+"</p>"
-    +'<div class="pspecs">'+specHtml(i)+'<span class="pref">'+i.ref+"</span></div></div></article>";
+    +'<div class="pspecs">'+specHtml(i)+'<span class="pref">'+i.ref+"</span></div></div></a>";
 }
 
 /* ---------- favoritos, persistidos entre páginas ---------- */
@@ -99,7 +99,7 @@ function initChrome(aoMudarMoeda){
   actualizaSavedBadge();
 }
 
-/* ---------- modal de ficha de imóvel ---------- */
+/* ---------- modal de vista rápida (só usada em index.html) ---------- */
 function initModal(){
   var modal=$("#modal");
   if(!modal)return {abrir:function(){},fechar:function(){},refrescarPreco:function(){}};
@@ -136,31 +136,30 @@ function initModal(){
   return {abrir:abrir,fechar:fechar,refrescarPreco:function(){if(itemAberto)$("#mPreco").innerHTML=fmtPreco(itemAberto,Moeda.get());}};
 }
 
-/* ---------- liga cliques da grelha (abrir ficha + guardar favorito) ---------- */
+/* ---------- liga cliques da grelha: guardar favorito + (opcional) vista rápida ---------- */
+/* os cartões são links reais para imovel.html — funcionam sem JS, com "abrir em
+   nova aba", etc. Se for passado modalApi, um clique normal (botão esquerdo,
+   sem Ctrl/Cmd/Shift) abre a vista rápida em vez de navegar; Ctrl/Cmd-clique
+   continua a abrir a ficha completa numa nova aba. */
 function ligarGrelha(grid,modalApi){
   grid.addEventListener("click",function(ev){
-    var alvo=ev.target;
-    while(alvo&&alvo!==grid&&!alvo.getAttribute("data-heart")&&!alvo.classList.contains("pcard"))alvo=alvo.parentNode;
-    if(!alvo||alvo===grid)return;
-    if(alvo.getAttribute&&alvo.getAttribute("data-heart")){
+    var coracao=ev.target.closest&&ev.target.closest("[data-heart]");
+    if(coracao&&grid.contains(coracao)){
+      ev.preventDefault();
       ev.stopPropagation();
-      var ref=alvo.getAttribute("data-heart");
+      var ref=coracao.getAttribute("data-heart");
       var activo=Guardados.alternar(ref);
-      alvo.classList.toggle("saved",activo);
+      coracao.classList.toggle("saved",activo);
       actualizaSavedBadge();
       return;
     }
-    if(alvo.classList.contains("pcard")){
-      var item=IMOVEIS.filter(function(x){return x.ref===alvo.getAttribute("data-ref")})[0];
-      modalApi.abrir(item);
-    }
-  });
-  grid.addEventListener("keydown",function(ev){
-    if((ev.key==="Enter"||ev.key===" ")&&ev.target.classList&&ev.target.classList.contains("pcard")){
-      ev.preventDefault();
-      var item=IMOVEIS.filter(function(x){return x.ref===ev.target.getAttribute("data-ref")})[0];
-      modalApi.abrir(item);
-    }
+    if(!modalApi)return;
+    var cartaoEl=ev.target.closest&&ev.target.closest(".pcard");
+    if(!cartaoEl||!grid.contains(cartaoEl))return;
+    if(ev.button!==0||ev.ctrlKey||ev.metaKey||ev.shiftKey||ev.altKey)return;
+    ev.preventDefault();
+    var item=IMOVEIS.filter(function(x){return x.ref===cartaoEl.getAttribute("data-ref");})[0];
+    modalApi.abrir(item);
   });
 }
 

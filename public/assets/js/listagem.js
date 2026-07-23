@@ -62,8 +62,7 @@ function nFiltrosActivos(){
 /* ---------- elementos ---------- */
 var elGrid=$("#resGrid"),elCount=$("#resCount"),elBadge=$("#filtrosBadge"),
     elToolbarLimpar=$("#toolbarLimpar"),elLimpar=$("#fLimpar");
-var modalApi=H4U.initModal();
-H4U.ligarGrelha(elGrid,modalApi);
+H4U.ligarGrelha(elGrid);
 elGrid.addEventListener("click",function(ev){
   if(ev.target.closest&&ev.target.closest("[data-limpar]"))limparFiltros();
 });
@@ -174,7 +173,7 @@ if(btnFechar)btnFechar.addEventListener("click",fecharPainel);
 if(backdrop)backdrop.addEventListener("click",fecharPainel);
 document.addEventListener("keydown",function(ev){if(ev.key==="Escape"&&sidebar&&sidebar.classList.contains("aberta"))fecharPainel();});
 
-H4U.initChrome(function(){render();modalApi.refrescarPreco();});
+H4U.initChrome(render);
 H4U.initReveal();
 render();
 })();

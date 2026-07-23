@@ -291,8 +291,8 @@
 <span class="brand-txt"><b>House<i>4</i>Us</b><span>Mediação Imobiliária</span></span>
 </a>
 <nav class="nav" aria-label="Navegação principal">
-<a href="#destaques" data-nav-neg="venda">Comprar</a>
-<a href="#destaques" data-nav-neg="arrendamento">Arrendar</a>
+<a href="imoveis.html?negocio=venda">Comprar</a>
+<a href="imoveis.html?negocio=arrendamento">Arrendar</a>
 <a href="#zonas">Zonas</a>
 <a href="#diaspora">Diáspora</a>
 <a href="#guias">Guias</a>
@@ -311,8 +311,8 @@
 <button class="mclose mclose--static" id="btnMenuFechar" aria-label="Fechar menu"><svg aria-hidden="true"><use href="#ic-close"/></svg></button>
 </div>
 <nav aria-label="Menu móvel">
-<a href="#destaques" data-nav-neg="venda">Comprar</a>
-<a href="#destaques" data-nav-neg="arrendamento">Arrendar</a>
+<a href="imoveis.html?negocio=venda">Comprar</a>
+<a href="imoveis.html?negocio=arrendamento">Arrendar</a>
 <a href="#zonas">Zonas</a>
 <a href="#diaspora">Diáspora</a>
 <a href="#vender">Anunciar imóvel</a>
@@ -412,7 +412,7 @@
 </div>
 </div>
 <div class="pgrid" id="pgrid" data-reveal></div>
-<div class="pmore"><button class="btn btn--ghost" id="btnMais" hidden>Mostrar todos os imóveis</button></div>
+<div class="pmore"><a class="btn btn--ghost" id="btnMais" href="imoveis.html" hidden>Ver todos os imóveis</a></div>
 </div></section>
 
 <!-- ============ ZONAS ============ -->
@@ -666,8 +666,8 @@
 <div>
 <h4>Imóveis</h4>
 <ul>
-<li><a href="#destaques" data-nav-neg="venda">Comprar</a></li>
-<li><a href="#destaques" data-nav-neg="arrendamento">Arrendar</a></li>
+<li><a href="imoveis.html?negocio=venda">Comprar</a></li>
+<li><a href="imoveis.html?negocio=arrendamento">Arrendar</a></li>
 <li><a href="#destaques">Em destaque</a></li>
 <li><a href="#zonas">Por zona</a></li>
 </ul>
@@ -741,6 +741,8 @@
 </div>
 </div>
 
+<script src="assets/js/dados.js" defer></script>
+<script src="assets/js/util.js" defer></script>
 <script src="assets/js/main.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="pt-AO">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Todos os imóveis em Luanda — Comprar e Arrendar | House4Us</title>
+<meta name="description" content="Veja todos os imóveis à venda e para arrendar em Luanda. Filtre por zona, tipo, preço, quartos e comodidades — documentação sempre conferida pela House4Us.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23A31B1D'/%3E%3Cpath d='M22 58 50 32 78 58' fill='none' stroke='%23fff' stroke-width='9' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M6 78 C40 64 66 86 96 70' fill='none' stroke='%23fff' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- ============ SPRITE SVG: gradientes, logótipo, cenas e ícones ============ -->
+<svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<defs>
+<linearGradient id="gRed" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#761517"/><stop offset=".6" stop-color="#A31B1D"/><stop offset="1" stop-color="#BE2A2C"/></linearGradient>
+<linearGradient id="gSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#241C33"/><stop offset=".38" stop-color="#63304A"/><stop offset=".66" stop-color="#C25B45"/><stop offset=".85" stop-color="#F0A45C"/><stop offset="1" stop-color="#F7BE7A"/></linearGradient>
+<linearGradient id="gSkyLite" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3A2A47"/><stop offset=".5" stop-color="#A85048"/><stop offset=".85" stop-color="#F0A45C"/></linearGradient>
+<linearGradient id="gSea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A85149"/><stop offset="1" stop-color="#241E33"/></linearGradient>
+<linearGradient id="gSeaBlue" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3A7A80"/><stop offset="1" stop-color="#16404A"/></linearGradient>
+<linearGradient id="gGlass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F5B25A"/><stop offset="1" stop-color="#C4633C"/></linearGradient>
+<linearGradient id="gPool" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E08A5C"/><stop offset="1" stop-color="#6E4458"/></linearGradient>
+<linearGradient id="gBlue" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#202748"/><stop offset=".55" stop-color="#5A3A5E"/><stop offset="1" stop-color="#C97355"/></linearGradient>
+<clipPath id="lgClip"><path d="M18 0H118C163 0 200 37 200 82V182C200 192 192 200 182 200H82C37 200 0 163 0 118V18C0 8 8 0 18 0Z"/></clipPath>
+<g id="palm">
+<path d="M43 140l7 0c-2-40 4-80-2-118l-9 2c8 37 2 76 4 116z"/>
+<path d="M44 22C24 6 6 8 0 20 14 18 30 24 44 22z"/>
+<path d="M44 22C60 4 82 4 92 14 76 14 58 20 44 22z"/>
+<path d="M44 22C30 36 12 40 2 36 14 30 30 26 44 22z"/>
+<path d="M44 22C58 36 78 40 90 36 76 30 58 26 44 22z"/>
+<path d="M44 22C40 6 46 0 56 -2 50 8 48 14 44 22z"/>
+</g>
+</defs>
+
+<!-- emblema recriado a partir do logótipo enviado -->
+<symbol id="lg-mark" viewBox="0 0 200 200">
+<path d="M18 0H118C163 0 200 37 200 82V182C200 192 192 200 182 200H82C37 200 0 163 0 118V18C0 8 8 0 18 0Z" fill="url(#gRed)"/>
+<g clip-path="url(#lgClip)">
+<g fill="none" stroke="#fff" stroke-width="11" stroke-linejoin="round" stroke-linecap="round">
+<path d="M30 130 84 82 112 108"/>
+<path d="M98 124 140 76 184 122"/>
+<path d="M106 122V150M176 128V150"/>
+</g>
+<rect x="126" y="100" width="30" height="42" fill="#fff"/>
+<rect x="131" y="105" width="9" height="14" fill="url(#gRed)"/><rect x="142" y="105" width="9" height="14" fill="url(#gRed)"/>
+<rect x="131" y="121" width="9" height="16" fill="url(#gRed)"/><rect x="142" y="121" width="9" height="16" fill="url(#gRed)"/>
+<path d="M-6 154C58 130 132 162 206 134" stroke="#fff" stroke-width="12" fill="none"/>
+<path d="M-6 178C64 154 138 184 206 158" stroke="#fff" stroke-width="9" fill="none"/>
+</g>
+</symbol>
+
+<!-- ícones -->
+<symbol id="ic-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></g></symbol>
+<symbol id="ic-phone" viewBox="0 0 24 24"><path fill="currentColor" d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11 11 0 0 0 3.4.55 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11 11 0 0 0 .55 3.4 1 1 0 0 1-.24 1z"/></symbol>
+<symbol id="ic-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.6-6.1c-.3-.1-1.5-.8-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.7.8-.8 1-.2.2-.3.2-.6.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4 0-.5.2-.7l.5-.6c.1-.2.1-.4 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.7.6.7.2 1.3.2 1.8.1.6-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/></symbol>
+<symbol id="ic-heart" viewBox="0 0 24 24"><path stroke-linejoin="round" stroke-linecap="round" d="M12 20.3l-1.2-1.1C6 14.9 3 12.2 3 8.9A4.6 4.6 0 0 1 7.6 4.3c1.7 0 3.3.8 4.4 2a5.8 5.8 0 0 1 4.4-2A4.6 4.6 0 0 1 21 8.9c0 3.3-3 6-7.8 10.3z"/></symbol>
+<symbol id="ic-search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5 21 21"/></g></symbol>
+<symbol id="ic-close" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></symbol>
+<symbol id="ic-menu" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></symbol>
+<symbol id="ic-bed" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-7m0 7h18m-18 0v1.5M21 18v1.5M21 18v-4a3 3 0 0 0-3-3H9v7"/><circle cx="6" cy="11.5" r="1.7"/></g></symbol>
+<symbol id="ic-bath" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16v2a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5v-2z"/><path d="M6 12V5.5A2.5 2.5 0 0 1 8.5 3c1.2 0 2.1.8 2.4 1.9M5 21l1-2M19 21l-1-2"/></g></symbol>
+<symbol id="ic-area" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M4 9V4h5M20 15v5h-5M4 4l6 6M20 20l-6-6"/></symbol>
+<symbol id="ic-build" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M5 21V4.5L12 3v18M12 8l7 1.8V21M5 21h16M8 7.5h1M8 11h1M8 14.5h1M15 12h1M15 15.5h1"/></symbol>
+<symbol id="ic-house" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M4 11.5L12 4.5l8 7M6.5 10v10.5h11V10M10 20.5v-5h4v5"/></symbol>
+<symbol id="ic-brief" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M4 8h16v12H4zM9 8V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M4 13h16"/></symbol>
+<symbol id="ic-land" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M6 20L9 6M18 20L15 6M3 15.5h18M3 20h18M9.8 10h4.4"/></symbol>
+<symbol id="ic-fb" viewBox="0 0 24 24"><path fill="currentColor" d="M13.5 21v-7h2.4l.4-2.8h-2.8V9.4c0-.8.3-1.4 1.5-1.4h1.4V5.5C16 5.4 15 5.3 14 5.3c-2.3 0-3.9 1.4-3.9 4v1.9H7.7V14h2.4v7z"/></symbol>
+<symbol id="ic-ig" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="4"/></g><circle cx="17" cy="7" r="1.3" fill="currentColor"/></symbol>
+<symbol id="ic-li" viewBox="0 0 24 24"><path fill="currentColor" d="M6.3 9.2H3.6V20h2.7zM4.9 7.9a1.6 1.6 0 1 0 0-3.2 1.6 1.6 0 0 0 0 3.2zM20.4 20h-2.7v-5.6c0-1.4-.5-2.3-1.7-2.3-.9 0-1.5.6-1.7 1.2-.1.2-.1.5-.1.8V20h-2.7V9.2h2.7v1.5c.4-.6 1.1-1.5 2.7-1.5 2 0 3.5 1.3 3.5 4.1z"/></symbol>
+<symbol id="ic-yt" viewBox="0 0 24 24"><path fill="currentColor" d="M21.3 7.3a2.5 2.5 0 0 0-1.7-1.8C18 5 12 5 12 5s-6 0-7.6.5A2.5 2.5 0 0 0 2.7 7.3 26 26 0 0 0 2.3 12a26 26 0 0 0 .4 4.7 2.5 2.5 0 0 0 1.7 1.8C6 19 12 19 12 19s6 0 7.6-.5a2.5 2.5 0 0 0 1.7-1.8 26 26 0 0 0 .4-4.7 26 26 0 0 0-.4-4.7zM10 15.2V8.8L15.5 12z"/></symbol>
+
+<!-- cenas usadas como imagem de recurso quando um imóvel não tem foto -->
+<symbol id="sc-villa" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+<rect width="400" height="300" fill="url(#gSkyLite)"/>
+<circle cx="318" cy="96" r="34" fill="#FFE0A8" opacity=".9"/>
+<rect y="212" width="400" height="88" fill="#3A2C3E"/>
+<rect x="52" y="118" width="212" height="98" fill="#F2EADB"/>
+<rect x="52" y="118" width="212" height="98" fill="#000000" opacity=".07"/>
+<rect x="52" y="108" width="230" height="14" fill="#241C2B"/>
+<rect x="180" y="70" width="150" height="146" fill="#EDE2CE"/>
+<rect x="168" y="60" width="174" height="14" fill="#241C2B"/>
+<rect x="200" y="96" width="106" height="104" fill="url(#gGlass)"/>
+<g stroke="#241C2B" stroke-width="5"><path d="M236 96v104M271 96v104M200 148h106"/></g>
+<rect x="76" y="150" width="34" height="66" fill="#2E2433"/>
+<rect x="126" y="150" width="34" height="42" fill="url(#gGlass)" opacity=".85"/>
+<rect x="40" y="216" width="320" height="8" fill="#4A3A4E"/>
+<rect x="60" y="236" width="260" height="34" fill="url(#gPool)"/>
+<g stroke="#FFD9A8" stroke-width="2" opacity=".55"><path d="M72 246h96M180 256h120M92 264h140"/></g>
+<use href="#palm" transform="translate(330,120) scale(.85)" fill="#241A2B"/>
+<rect y="270" width="400" height="30" fill="#2A2030"/>
+</symbol>
+<symbol id="sc-towers" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+<rect width="400" height="300" fill="url(#gSkyLite)"/>
+<circle cx="70" cy="84" r="26" fill="#FFE0A8" opacity=".85"/>
+<rect y="236" width="400" height="64" fill="#3A2C42"/>
+<rect x="16" y="102" width="62" height="134" fill="#C4574A"/>
+<rect x="90" y="66" width="62" height="170" fill="#DB9660"/>
+<rect x="164" y="116" width="62" height="120" fill="#8E5F73"/>
+<rect x="238" y="82" width="62" height="154" fill="#C4574A"/>
+<rect x="312" y="124" width="70" height="112" fill="#B0788A"/>
+</symbol>
+<symbol id="sc-beach" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+<rect width="400" height="300" fill="url(#gSkyLite)"/>
+<circle cx="96" cy="88" r="30" fill="#FFE0A8" opacity=".9"/>
+<rect y="150" width="400" height="86" fill="url(#gSeaBlue)"/>
+<path d="M0 236C120 224 280 246 400 230L400 300L0 300Z" fill="#E9C896"/>
+<use href="#palm" transform="translate(36,150) scale(1)" fill="#22303A"/>
+<use href="#palm" transform="translate(352,150) scale(.8)" fill="#22303A"/>
+</symbol>
+<symbol id="sc-apartment" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+<rect width="400" height="300" fill="#EFE7DA"/>
+<rect y="216" width="400" height="84" fill="#C6A278"/>
+<rect x="216" y="40" width="156" height="176" fill="#241C2B"/>
+<rect x="224" y="48" width="140" height="160" fill="url(#gSkyLite)"/>
+<circle cx="330" cy="96" r="18" fill="#FFE0A8"/>
+</symbol>
+<symbol id="sc-office" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+<rect width="400" height="300" fill="url(#gBlue)"/>
+<circle cx="330" cy="80" r="24" fill="#FFE0A8" opacity=".7"/>
+<rect x="120" y="26" width="160" height="222" fill="#2A3352"/>
+<rect x="130" y="36" width="32" height="168" fill="#38426B"/>
+<rect x="168" y="36" width="32" height="168" fill="#313B60"/>
+<rect x="206" y="36" width="32" height="168" fill="#38426B"/>
+<rect x="244" y="36" width="32" height="168" fill="#313B60"/>
+</symbol>
+<symbol id="sc-terreno" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+<rect width="400" height="300" fill="url(#gSkyLite)"/>
+<circle cx="86" cy="92" r="30" fill="#FFE0A8" opacity=".9"/>
+<path d="M0 176h400v124H0z" fill="#B98A5C"/>
+<path d="M0 176h400v10H0z" fill="#8F6A46"/>
+</symbol>
+<symbol id="sc-miramar" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+<rect width="400" height="300" fill="url(#gSkyLite)"/>
+<rect x="250" y="150" width="150" height="60" fill="url(#gSeaBlue)"/>
+<path d="M60 132L160 84L260 132z" fill="#A6453C"/>
+<rect x="76" y="132" width="168" height="84" fill="#F2E7D2"/>
+</symbol>
+</svg>
+
+<!-- ============ BARRA SUPERIOR ============ -->
+<div class="topbar"><div class="wrap topbar-in">
+<span class="loc"><svg><use href="#ic-pin"/></svg>Talatona · Ilha do Cabo — Luanda, Angola</span>
+<a class="tb-tel" href="tel:+244922284999"><svg><use href="#ic-phone"/></svg>+244 922 284 999</a>
+<a class="tb-tel" href="tel:+351969912742"><svg><use href="#ic-phone"/></svg>+351 969 912 742</a>
+<div class="moeda" role="group" aria-label="Moeda dos preços">
+<button class="moeda-btn" data-moeda="kz" aria-pressed="true">Kz</button>
+<button class="moeda-btn" data-moeda="eur" aria-pressed="false">€</button>
+</div>
+</div></div>
+
+<!-- ============ CABEÇALHO ============ -->
+<header class="site-head" id="topo"><div class="wrap head-in">
+<a class="brand" href="index.html" aria-label="House4Us — início">
+<svg aria-hidden="true"><use href="#lg-mark"/></svg>
+<span class="brand-txt"><b>House<i>4</i>Us</b><span>Mediação Imobiliária</span></span>
+</a>
+<nav class="nav" aria-label="Navegação principal">
+<a href="imoveis.html?negocio=venda">Comprar</a>
+<a href="imoveis.html?negocio=arrendamento">Arrendar</a>
+<a href="index.html#zonas">Zonas</a>
+<a href="index.html#diaspora">Diáspora</a>
+<a href="index.html#guias">Guias</a>
+<a href="index.html#contacto">Contacto</a>
+</nav>
+<span class="saved-ind" title="Imóveis guardados"><svg aria-hidden="true"><use href="#ic-heart"/></svg><span class="saved-badge" id="savedBadge" hidden>0</span></span>
+<a class="btn btn--red head-anunciar" href="index.html#vender">Anunciar imóvel</a>
+<button class="burger" id="btnMenu" aria-label="Abrir menu" aria-expanded="false"><svg aria-hidden="true"><use href="#ic-menu"/></svg></button>
+</div></header>
+
+<!-- menu móvel -->
+<div class="mmenu" id="mmenu">
+<div class="mmenu-panel">
+<div class="mmenu-head">
+<span class="brand-txt"><b>House<i>4</i>Us</b></span>
+<button class="mclose mclose--static" id="btnMenuFechar" aria-label="Fechar menu"><svg aria-hidden="true"><use href="#ic-close"/></svg></button>
+</div>
+<nav aria-label="Menu móvel">
+<a href="imoveis.html?negocio=venda">Comprar</a>
+<a href="imoveis.html?negocio=arrendamento">Arrendar</a>
+<a href="index.html#zonas">Zonas</a>
+<a href="index.html#diaspora">Diáspora</a>
+<a href="index.html#vender">Anunciar imóvel</a>
+<a href="index.html#guias">Guias</a>
+<a href="index.html#contacto">Contacto</a>
+</nav>
+<div class="mmenu-div"></div>
+<a class="mmenu-tel" href="tel:+244922284999"><svg><use href="#ic-phone"/></svg>+244 922 284 999</a>
+<a class="mmenu-tel" href="tel:+351969912742"><svg><use href="#ic-phone"/></svg>+351 969 912 742</a>
+<a class="btn btn--red" href="index.html#vender">Anunciar imóvel</a>
+</div>
+</div>
+
+<main>
+<!-- ============ CABEÇALHO DA PÁGINA ============ -->
+<section class="section section--tint plisto-head"><div class="wrap">
+<p class="crumb"><a href="index.html">Início</a><span>/</span>Imóveis</p>
+<p class="overline">Carteira completa</p>
+<h1 class="h2">Todos os imóveis em Luanda</h1>
+<p class="lede">Filtre por zona, tipo, preço, quartos e comodidades para encontrar exactamente o que procura.</p>
+</div></section>
+
+<!-- ============ LISTAGEM ============ -->
+<section class="section plisto"><div class="wrap wrap--wide">
+<div class="flayout">
+
+<div class="fbackdrop" id="fBackdrop"></div>
+<aside class="fsidebar" id="fSidebar" aria-label="Filtros de pesquisa">
+<div class="fsb-head">
+<h2>Filtros</h2>
+<button class="mclose mclose--static" id="fFechar" aria-label="Fechar filtros"><svg aria-hidden="true"><use href="#ic-close"/></svg></button>
+</div>
+
+<div class="fgroup">
+<span class="fgroup-t">Negócio</span>
+<div class="fneg" id="fNeg">
+<button type="button" data-neg="todos" aria-pressed="true">Tudo</button>
+<button type="button" data-neg="venda" aria-pressed="false">Comprar</button>
+<button type="button" data-neg="arrendamento" aria-pressed="false">Arrendar</button>
+</div>
+</div>
+
+<div class="fgroup">
+<span class="fgroup-t">Zona</span>
+<div class="flist" id="fZonas"></div>
+</div>
+
+<div class="fgroup">
+<span class="fgroup-t">Tipo de imóvel</span>
+<div class="flist" id="fTipos"></div>
+</div>
+
+<div class="fgroup">
+<span class="fgroup-t">Preço <small>(Kz, em milhões)</small></span>
+<div class="frange">
+<label>Mínimo<input type="number" id="fPrecoMin" min="0" step="1" placeholder="Ex: 50" inputmode="numeric"></label>
+<span class="frange-d">—</span>
+<label>Máximo<input type="number" id="fPrecoMax" min="0" step="1" placeholder="Ex: 200" inputmode="numeric"></label>
+</div>
+</div>
+
+<div class="fgroup">
+<span class="fgroup-t">Quartos</span>
+<div class="fchips" id="fQuartos">
+<button type="button" data-q="0" aria-pressed="true">Qualquer</button>
+<button type="button" data-q="1" aria-pressed="false">1+</button>
+<button type="button" data-q="2" aria-pressed="false">2+</button>
+<button type="button" data-q="3" aria-pressed="false">3+</button>
+<button type="button" data-q="4" aria-pressed="false">4+</button>
+<button type="button" data-q="5" aria-pressed="false">5+</button>
+</div>
+</div>
+
+<div class="fgroup">
+<span class="fgroup-t">Área mínima <small>(m²)</small></span>
+<input type="number" id="fAreaMin" min="0" step="1" placeholder="Qualquer área" class="finput" inputmode="numeric">
+</div>
+
+<div class="fgroup fgroup--last">
+<span class="fgroup-t">Comodidades</span>
+<div class="fchips" id="fExtras"></div>
+</div>
+
+<button type="button" class="btn btn--ghost fsb-limpar" id="fLimpar">Limpar filtros</button>
+</aside>
+
+<div class="fresults">
+<div class="ftoolbar">
+<button type="button" class="btn-filtros" id="btnFiltros"><svg aria-hidden="true"><use href="#ic-search"/></svg>Filtros<span class="fbadge" id="filtrosBadge" hidden>0</span></button>
+<span class="ftoolbar-count" id="resCount"></span>
+<button type="button" class="ftoolbar-limpar" id="toolbarLimpar" hidden>Limpar filtros</button>
+<label class="fordem">Ordenar<select id="fOrdem">
+<option value="relevancia">Recomendados</option>
+<option value="precoAsc">Preço: menor primeiro</option>
+<option value="precoDesc">Preço: maior primeiro</option>
+<option value="areaDesc">Maior área</option>
+</select></label>
+</div>
+<div class="pgrid" id="resGrid" data-reveal></div>
+</div>
+
+</div>
+</div></section>
+</main>
+
+<!-- ============ RODAPÉ ============ -->
+<footer class="site-foot"><div class="wrap">
+<div class="foot-top">
+<div class="foot-brand">
+<a class="brand" href="index.html"><svg aria-hidden="true"><use href="#lg-mark"/></svg><span class="brand-txt"><b>House<i>4</i>Us</b><span>Mediação Imobiliária</span></span></a>
+<p>Compra, venda e arrendamento em Luanda, com documentação conferida e apoio dedicado à diáspora angolana.</p>
+<div class="socials">
+<a href="#topo" aria-label="Facebook"><svg aria-hidden="true"><use href="#ic-fb"/></svg></a>
+<a href="#topo" aria-label="Instagram"><svg aria-hidden="true"><use href="#ic-ig"/></svg></a>
+<a href="#topo" aria-label="LinkedIn"><svg aria-hidden="true"><use href="#ic-li"/></svg></a>
+<a href="#topo" aria-label="YouTube"><svg aria-hidden="true"><use href="#ic-yt"/></svg></a>
+</div>
+</div>
+<div>
+<h4>Imóveis</h4>
+<ul>
+<li><a href="imoveis.html?negocio=venda">Comprar</a></li>
+<li><a href="imoveis.html?negocio=arrendamento">Arrendar</a></li>
+<li><a href="index.html#destaques">Em destaque</a></li>
+<li><a href="index.html#zonas">Por zona</a></li>
+</ul>
+</div>
+<div>
+<h4>Empresa</h4>
+<ul>
+<li><a href="index.html#porque">Porquê a House4Us</a></li>
+<li><a href="index.html#vender">Anunciar imóvel</a></li>
+<li><a href="index.html#guias">Guias</a></li>
+<li><a href="index.html#faq">Perguntas frequentes</a></li>
+</ul>
+</div>
+<div>
+<h4>Zonas</h4>
+<ul>
+<li><a href="imoveis.html?zona=Talatona">Talatona</a></li>
+<li><a href="imoveis.html?zona=Ilha do Cabo">Ilha do Cabo</a></li>
+<li><a href="imoveis.html?zona=Kilamba">Kilamba</a></li>
+<li><a href="imoveis.html?zona=Miramar">Miramar</a></li>
+<li><a href="imoveis.html?zona=Benfica">Benfica</a></li>
+<li><a href="imoveis.html?zona=Ingombota">Ingombota</a></li>
+</ul>
+</div>
+<div class="foot-contact">
+<h4>Contactos</h4>
+<ul>
+<li><svg aria-hidden="true"><use href="#ic-pin"/></svg>Espaço Avenida, Bl. Alfa, 2.º andar, Loja 12 — Talatona</li>
+<li><svg aria-hidden="true"><use href="#ic-pin"/></svg>Av. Mutamba Mohamed, Casa do Desporto, n.º 10 — Ilha do Cabo</li>
+<li><svg aria-hidden="true"><use href="#ic-phone"/></svg><a href="tel:+244922284999">+244 922 284 999</a></li>
+<li><svg aria-hidden="true"><use href="#ic-phone"/></svg><a href="tel:+351969912742">+351 969 912 742</a></li>
+</ul>
+</div>
+</div>
+<div class="foot-bot">
+<span>© 2026 House4Us — Mediação Imobiliária · Luanda, Angola</span>
+<span>Protótipo de demonstração · Dados fictícios · Desenvolvido por ONE TIC SOLUTION, Lda.</span>
+</div>
+</div></footer>
+
+<!-- WhatsApp flutuante -->
+<a class="fab" href="https://wa.me/244922284999?text=Ol%C3%A1%2C%20vi%20o%20site%20da%20House4Us%20e%20gostava%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+<svg aria-hidden="true"><use href="#ic-wa"/></svg><span>WhatsApp</span>
+</a>
+
+<!-- ============ MODAL DE FICHA ============ -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+<div class="mbox">
+<div class="mmedia">
+<img id="mFoto" alt="" hidden>
+<svg id="mScene" aria-hidden="true"><use href="#sc-villa"/></svg>
+<span class="pbadge" id="mBadge">Venda</span>
+<button class="mclose" id="mFechar" aria-label="Fechar ficha"><svg aria-hidden="true"><use href="#ic-close"/></svg></button>
+</div>
+<div class="mbody">
+<div>
+<h3 class="mtitle" id="mTitle"></h3>
+<p class="pplace"><svg aria-hidden="true"><use href="#ic-pin"/></svg><span id="mZona"></span></p>
+<p class="mprice" id="mPreco"></p>
+<div class="mspecs" id="mSpecs"></div>
+<p class="mdesc" id="mDesc"></p>
+<div class="mextras" id="mExtras"></div>
+</div>
+<aside class="magent">
+<div class="magent-p"><span class="mava">CM</span><span><b>Carlos Morais</b><span>Director Geral · House4Us</span></span></div>
+<a class="btn btn--red" id="mWa" href="#" target="_blank" rel="noopener"><svg class="bi" aria-hidden="true"><use href="#ic-wa"/></svg>Pedir informações</a>
+<a class="btn btn--ghost" href="tel:+244922284999"><svg class="bi" aria-hidden="true"><use href="#ic-phone"/></svg>+244 922 284 999</a>
+<p class="mref" id="mRef"></p>
+</aside>
+</div>
+</div>
+</div>
+
+<script src="assets/js/dados.js" defer></script>
+<script src="assets/js/util.js" defer></script>
+<script src="assets/js/listagem.js" defer></script>
+</body>
+</html>

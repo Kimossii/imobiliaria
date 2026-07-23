@@ -1,0 +1,1 @@
+#mobiliário é dos sectores onde um protótipo bem apresentado vale mais que dez páginas de proposta

@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="pt-AO">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>House4Us — Imóveis para venda e arrendamento em Luanda</title>
+<meta name="description" content="Compra, venda e arrendamento de imóveis em Luanda: Talatona, Ilha do Cabo, Kilamba, Miramar e mais. Documentação conferida e apoio dedicado à diáspora.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23A31B1D'/%3E%3Cpath d='M22 58 50 32 78 58' fill='none' stroke='%23fff' stroke-width='9' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M6 78 C40 64 66 86 96 70' fill='none' stroke='%23fff' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================
+   HOUSE4US — paleta extraída do logótipo do cliente
+   vermelho #761517 → #A31B1D → #BE2A2C · texto #1A171B
+   ========================================================== */
+:root{
+  --red-700:#761517;--red-600:#8E181A;--red-500:#A31B1D;--red-400:#BE2A2C;
+  --grad:linear-gradient(135deg,#761517 0%,#A31B1D 55%,#BE2A2C 100%);
+  --ink:#1A171B;--ink-2:#46434B;--mut:#75727C;
+  --bg:#FFFFFF;--bg-2:#F7F7F9;--line:#E9E9EE;--line-2:#DCDCE3;
+  --amber:#E8A13C;
+  --sans:'Plus Jakarta Sans',system-ui,sans-serif;
+  --gut:clamp(20px,4vw,48px);--maxw:1200px;
+  --r-card:16px;
+  --sh-1:0 1px 2px rgba(26,23,27,.05),0 4px 16px rgba(26,23,27,.07);
+  --sh-2:0 14px 34px -10px rgba(26,23,27,.18);
+  --ease:cubic-bezier(.22,.66,.3,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:88px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15.5px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button,input,select{font:inherit;color:inherit}
+[hidden]{display:none!important}
+:focus-visible{outline:2.5px solid var(--red-500);outline-offset:3px;border-radius:4px}
+::selection{background:var(--red-500);color:#fff}
+.wrap{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gut)}
+.sprite{position:absolute;width:0;height:0;overflow:hidden}
+
+/* ---------- botões ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 22px;border:1px solid transparent;border-radius:999px;font-size:14.5px;font-weight:700;letter-spacing:.005em;cursor:pointer;transition:transform .2s var(--ease),background .2s var(--ease),border-color .2s var(--ease),filter .2s var(--ease),color .2s var(--ease)}
+.btn--red{background:var(--grad);color:#fff;box-shadow:0 10px 22px -10px rgba(163,27,29,.6)}
+.btn--red:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.btn--ghost{border-color:var(--line-2);background:#fff;color:var(--ink)}
+.btn--ghost:hover{border-color:var(--ink)}
+.btn--light{background:#fff;color:var(--ink)}
+.btn--light:hover{background:#F0EFF3}
+.btn--wa{background:#128C7E;color:#fff}
+.btn--wa:hover{filter:brightness(1.08)}
+.bi{width:17px;height:17px;flex:none}
+
+/* ---------- barra superior ---------- */
+.topbar{background:var(--ink);color:#CFCDD4;font-size:12.5px;font-weight:600}
+.topbar-in{display:flex;align-items:center;gap:18px;height:38px}
+.loc{display:flex;gap:7px;align-items:center;margin-right:auto;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.loc svg,.tb-tel svg{width:14px;height:14px;flex:none;color:var(--red-400)}
+.tb-tel{display:flex;gap:6px;align-items:center;color:#fff;white-space:nowrap}
+.tb-tel:hover{text-decoration:underline}
+.moeda{display:flex;background:rgba(255,255,255,.12);border-radius:999px;padding:3px;flex:none}
+.moeda-btn{border:0;background:transparent;color:#CFCDD4;font-size:11.5px;font-weight:800;padding:4px 12px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s}
+.moeda-btn[aria-pressed="true"]{background:#fff;color:var(--ink)}
+
+/* ---------- cabeçalho ---------- */
+.site-head{position:sticky;top:0;z-index:80;background:#fff;border-bottom:1px solid var(--line);transition:box-shadow .25s var(--ease)}
+.site-head.scrolled{box-shadow:var(--sh-1)}
+.head-in{display:flex;align-items:center;gap:20px;height:72px}
+.brand{display:flex;align-items:center;gap:10px;flex:none}
+.brand>svg{width:40px;height:40px;flex:none}
+.brand-txt b{font-size:20px;font-weight:800;letter-spacing:-.02em;display:block;line-height:1.05}
+.brand-txt b i{font-style:normal;color:var(--red-500)}
+.brand-txt span{font-size:9.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);display:block;margin-top:2px}
+.nav{display:flex;gap:2px;margin-right:auto}
+.nav a{padding:9px 13px;border-radius:999px;font-size:14.5px;font-weight:700;color:var(--ink-2);transition:background .2s,color .2s}
+.nav a:hover{background:var(--bg-2);color:var(--ink)}
+.saved-ind{position:relative;width:42px;height:42px;border:1px solid var(--line-2);border-radius:50%;display:grid;place-items:center;background:#fff;cursor:default;flex:none}
+.saved-ind svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:2;color:var(--ink-2)}
+.saved-badge{position:absolute;top:-5px;right:-5px;min-width:18px;height:18px;background:var(--red-500);color:#fff;font-size:10.5px;font-weight:800;border-radius:999px;display:grid;place-items:center;padding:0 4px}
+.burger{display:none;width:42px;height:42px;place-items:center;background:#fff;border:1px solid var(--line-2);border-radius:12px;cursor:pointer;flex:none}
+.burger svg{width:19px;height:19px;color:var(--ink)}
+
+/* ---------- menu móvel ---------- */
+.mmenu{position:fixed;inset:0;z-index:95;background:rgba(26,23,27,.45);opacity:0;pointer-events:none;transition:opacity .25s var(--ease)}
+.mmenu.aberto{opacity:1;pointer-events:auto}
+.mmenu-panel{position:absolute;top:0;right:0;bottom:0;width:min(340px,88vw);background:#fff;padding:18px 20px 28px;transform:translateX(100%);transition:transform .3s var(--ease);display:flex;flex-direction:column;overflow:auto}
+.mmenu.aberto .mmenu-panel{transform:none}
+.mmenu-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.mmenu-panel nav{display:grid;gap:2px}
+.mmenu-panel nav a{padding:13px 12px;border-radius:12px;font-weight:800;font-size:16px}
+.mmenu-panel nav a:hover{background:var(--bg-2)}
+.mmenu-div{height:1px;background:var(--line);margin:16px 0}
+.mmenu-tel{display:flex;gap:9px;align-items:center;padding:10px 12px;font-weight:700;font-size:14.5px;color:var(--ink-2)}
+.mmenu-tel svg{width:16px;height:16px;color:var(--red-500)}
+.mmenu-panel .btn{margin-top:14px}
+
+/* ---------- herói ---------- */
+.hero{position:relative;color:#fff;overflow:hidden;background:var(--ink)}
+.hero-bg{position:absolute;inset:0}
+.hero-bg svg{width:100%;height:100%}
+.hero-veil{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(18,12,22,.34),rgba(18,12,22,.08) 42%,rgba(18,12,22,.5) 100%)}
+.hero-in{position:relative;z-index:2;padding:clamp(54px,7.5vw,92px) 0 clamp(118px,13vw,150px);max-width:800px}
+.hero-over{font-size:12.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#FFD9A8;margin:0 0 14px;display:flex;align-items:center;gap:9px}
+.hero-over::before{content:"";width:26px;height:2px;background:currentColor;border-radius:2px}
+.hero h1{font-size:clamp(34px,5.4vw,58px);font-weight:800;letter-spacing:-.025em;line-height:1.05;margin:0;text-shadow:0 2px 28px rgba(0,0,0,.3)}
+.hero-sub{font-size:clamp(15px,1.5vw,17.5px);font-weight:600;color:rgba(255,255,255,.94);max-width:54ch;margin:16px 0 0;text-shadow:0 1px 14px rgba(0,0,0,.3)}
+
+/* ---------- pesquisa flutuante ---------- */
+.search-wrap{position:relative;z-index:5;margin-top:-88px}
+.scard{background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:var(--sh-2);padding:14px 14px 16px}
+.stabs{display:inline-flex;background:var(--bg-2);border-radius:999px;padding:4px;margin:0 0 12px 2px}
+.stab{border:0;background:transparent;padding:9px 24px;border-radius:999px;font-weight:800;font-size:14px;color:var(--ink-2);cursor:pointer;transition:background .2s,color .2s}
+.stab[aria-selected="true"]{background:var(--ink);color:#fff}
+.sfields{display:grid;grid-template-columns:1.15fr 1fr 1fr auto;gap:10px}
+.sfield{position:relative;border:1px solid var(--line-2);border-radius:14px;padding:9px 14px 8px;transition:border-color .2s}
+.sfield:focus-within{border-color:var(--red-500)}
+.sfield label{display:block;font-size:10px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--mut)}
+.sfield select{width:100%;border:0;background:none;font-size:15px;font-weight:700;color:var(--ink);padding:3px 20px 0 0;appearance:none;cursor:pointer;outline:0}
+.sfield::after{content:"";position:absolute;right:14px;bottom:16px;width:7px;height:7px;border-right:2px solid var(--mut);border-bottom:2px solid var(--mut);transform:rotate(45deg);pointer-events:none}
+.sgo{display:flex}
+.sgo .btn{height:100%;padding-inline:26px;font-size:15px;border-radius:14px}
+.spop{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 2px 0;font-size:13px;color:var(--mut);font-weight:700}
+.spop button{border:1px solid var(--line-2);background:#fff;border-radius:999px;padding:7px 14px;font-size:12.5px;font-weight:800;color:var(--ink-2);cursor:pointer;transition:border-color .2s,color .2s}
+.spop button:hover{border-color:var(--red-500);color:var(--red-600)}
+.strust{display:flex;flex-wrap:wrap;gap:10px 26px;justify-content:center;margin-top:18px;font-size:13px;font-weight:700;color:var(--ink-2)}
+.strust span{display:flex;gap:7px;align-items:center}
+.strust svg{width:15px;height:15px;flex:none;color:var(--red-500)}
+
+/* ---------- categorias ---------- */
+.section--cats{padding:clamp(34px,4.5vw,52px) 0 0}
+.cats{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(96px,1fr);gap:4px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}
+.cats::-webkit-scrollbar{display:none}
+.cat{display:flex;flex-direction:column;align-items:center;gap:9px;background:none;border:0;padding:12px 4px;border-radius:14px;cursor:pointer;font-size:12.5px;font-weight:700;color:var(--ink-2);white-space:nowrap;transition:color .2s}
+.cat .ico{width:46px;height:46px;border-radius:50%;background:var(--bg-2);display:grid;place-items:center;transition:background .25s var(--ease),transform .25s var(--ease)}
+.cat .ico svg{width:21px;height:21px;color:var(--ink)}
+.cat:hover .ico{background:#F3E6E6;transform:translateY(-2px)}
+.cat[aria-pressed="true"]{color:var(--red-600)}
+.cat[aria-pressed="true"] .ico{background:var(--grad)}
+.cat[aria-pressed="true"] .ico svg{color:#fff}
+
+/* ---------- secções ---------- */
+.section{padding:clamp(56px,7vw,92px) 0}
+.section--tint{background:var(--bg-2)}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:clamp(26px,3.5vw,40px)}
+.overline{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--red-500);margin:0 0 10px}
+.h2{font-size:clamp(26px,3.4vw,38px);font-weight:800;letter-spacing:-.02em;line-height:1.12;margin:0}
+.lede{font-size:15.5px;color:var(--mut);font-weight:600;max-width:58ch;margin:12px 0 0;line-height:1.65}
+
+/* ---------- grelha de imóveis ---------- */
+.pfilters{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:1px solid var(--line-2);background:#fff;border-radius:999px;padding:9px 16px;font-size:13px;font-weight:800;color:var(--ink-2);cursor:pointer;transition:background .2s,border-color .2s,color .2s}
+.chip:hover{border-color:var(--ink);color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,24px)}
+.pcard{background:#fff;border:1px solid var(--line);border-radius:var(--r-card);overflow:hidden;cursor:pointer;display:flex;flex-direction:column;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.pcard:hover{transform:translateY(-4px);box-shadow:var(--sh-2)}
+.pmedia{position:relative;aspect-ratio:16/10.2;background:var(--bg-2);overflow:hidden}
+.pmedia svg{position:absolute;inset:0;width:100%;height:100%}
+.pbadge{background:rgba(26,23,27,.82);color:#fff;font-size:10px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;padding:6px 11px;border-radius:999px;backdrop-filter:blur(4px)}
+.pmedia .pbadge{position:absolute;top:12px;left:12px}
+.pbadge--venda{background:var(--grad)}
+.pheart{position:absolute;top:10px;right:10px;width:36px;height:36px;border-radius:50%;border:0;background:rgba(255,255,255,.94);display:grid;place-items:center;cursor:pointer;box-shadow:var(--sh-1);transition:transform .2s var(--ease)}
+.pheart:hover{transform:scale(1.1)}
+.pheart svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2;color:var(--ink-2)}
+.pheart.saved svg{color:var(--red-500);fill:var(--red-500);animation:pop .35s var(--ease)}
+@keyframes pop{40%{transform:scale(1.35)}}
+.pbody{padding:16px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.pprice{font-size:21px;font-weight:800;letter-spacing:-.02em;line-height:1}
+.pprice small{font-size:12.5px;font-weight:700;color:var(--mut);letter-spacing:0}
+.ptitle{font-size:15.5px;font-weight:700;line-height:1.35;margin:0}
+.pplace{display:flex;gap:6px;align-items:center;font-size:13px;font-weight:600;color:var(--mut);margin:0}
+.pplace svg{width:14px;height:14px;color:var(--red-500);flex:none}
+.pspecs{display:flex;gap:14px;align-items:center;border-top:1px solid var(--line);padding-top:12px;margin-top:auto}
+.pspecs span{display:flex;gap:6px;align-items:center;font-size:13px;font-weight:700;color:var(--ink-2)}
+.pspecs svg{width:16px;height:16px;color:var(--mut);flex:none}
+.pspecs .pref{margin-left:auto;font-size:10px;font-weight:800;letter-spacing:.07em;color:var(--mut)}
+.empty{grid-column:1/-1;text-align:center;padding:48px 20px;border:1.5px dashed var(--line-2);border-radius:16px;color:var(--mut);font-weight:600}
+.pmore{display:flex;justify-content:center;margin-top:30px}
+
+/* ---------- zonas ---------- */
+.zgrid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:168px;gap:14px}
+.zcard{position:relative;border-radius:var(--r-card);overflow:hidden;border:0;padding:16px;display:flex;align-items:flex-end;text-align:left;color:#fff;cursor:pointer;background:var(--ink)}
+.zcard:nth-child(1){grid-column:span 2;grid-row:span 2}
+.zcard:nth-child(6){grid-column:span 2}
+.zcard .scene{position:absolute;inset:0;width:100%;height:100%;transition:transform .5s var(--ease)}
+.zcard:hover .scene{transform:scale(1.05)}
+.zcard::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(14,9,15,.8),rgba(14,9,15,0) 58%)}
+.ztxt{position:relative;z-index:1}
+.zname{display:block;font-size:19px;font-weight:800;letter-spacing:-.01em}
+.zsub{display:block;font-size:12px;font-weight:700;opacity:.85;margin-top:2px}
+
+/* ---------- porquê ---------- */
+.wgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.wcard{background:#fff;border:1px solid var(--line);border-radius:var(--r-card);padding:26px}
+.wcard .ico{width:48px;height:48px;border-radius:14px;background:#F6E9E9;display:grid;place-items:center;margin-bottom:16px}
+.wcard .ico svg{width:22px;height:22px;color:var(--red-600)}
+.wcard h3{font-size:17.5px;font-weight:800;margin:0 0 8px;letter-spacing:-.01em}
+.wcard p{margin:0;font-size:14px;color:var(--mut);font-weight:600;line-height:1.65}
+
+/* ---------- diáspora ---------- */
+.diaspora{background:radial-gradient(900px 460px at 88% -10%,rgba(190,42,44,.32),transparent 62%),var(--ink);color:#fff}
+.dgrid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,64px);align-items:center}
+.diaspora .overline{color:#F0A9A9}
+.diaspora .lede{color:rgba(255,255,255,.75)}
+.dlist{list-style:none;margin:22px 0 0;padding:0;display:grid;gap:12px}
+.dlist li{display:flex;gap:12px;font-size:14.5px;font-weight:600;line-height:1.55}
+.dlist svg{width:19px;height:19px;color:#5CC98F;flex:none;margin-top:2px}
+.dcta{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.dquote{margin:26px 0 0;padding:16px 18px;border-left:3px solid var(--red-400);background:rgba(255,255,255,.06);border-radius:0 12px 12px 0;font-size:14px;font-style:italic;color:rgba(255,255,255,.88);line-height:1.65}
+.dquote b{display:block;font-style:normal;font-size:12px;font-weight:700;margin-top:8px;color:rgba(255,255,255,.6)}
+.laptop{background:#2A262E;border-radius:18px 18px 0 0;padding:14px 14px 0;box-shadow:0 44px 80px -32px rgba(0,0,0,.65);border:1px solid rgba(255,255,255,.08);border-bottom:0}
+.lap-bar{display:flex;gap:6px;padding:0 4px 12px}
+.lap-bar i{width:10px;height:10px;border-radius:50%;background:#4A4550}
+.lap-bar i:first-child{background:#E5484D}
+.lap-screen{position:relative;border-radius:12px 12px 0 0;overflow:hidden;aspect-ratio:16/9.6;background:#1A171B}
+.lap-screen svg{position:absolute;inset:0;width:100%;height:100%}
+.lap-chip{position:absolute;left:12px;bottom:12px;background:rgba(18,12,18,.78);backdrop-filter:blur(6px);color:#fff;font-size:11.5px;font-weight:800;padding:8px 13px;border-radius:999px;display:flex;gap:8px;align-items:center}
+.lap-chip .dot{width:8px;height:8px;border-radius:50%;background:#E5484D;animation:pulse 1.6s infinite}
+@keyframes pulse{50%{opacity:.3}}
+.lap-base{height:14px;background:#1F1B23;border-radius:0 0 18px 18px;margin:0 -15px;border:1px solid rgba(255,255,255,.08);border-top:0}
+
+/* ---------- vender ---------- */
+.vgrid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,60px);align-items:center}
+.steps{list-style:none;counter-reset:s;margin:26px 0 0;padding:0}
+.steps li{counter-increment:s;display:flex;gap:16px;padding:18px 0;border-top:1px solid var(--line)}
+.steps li:last-child{border-bottom:1px solid var(--line)}
+.steps li::before{content:counter(s,decimal-leading-zero);font-size:13px;font-weight:800;color:var(--red-600);background:#F6E9E9;width:38px;height:38px;border-radius:12px;display:grid;place-items:center;flex:none}
+.steps h3{font-size:16px;font-weight:800;margin:0 0 4px}
+.steps p{margin:0;font-size:14px;color:var(--mut);font-weight:600;line-height:1.6}
+.vcard{background:var(--grad);border-radius:22px;padding:clamp(26px,3.4vw,38px);color:#fff;box-shadow:0 34px 64px -30px rgba(118,21,23,.75)}
+.vcard h3{font-size:clamp(21px,2.4vw,25px);font-weight:800;margin:0 0 8px;letter-spacing:-.015em}
+.vcard>p{margin:0 0 20px;font-size:14.5px;color:rgba(255,255,255,.88);font-weight:600}
+.vtel{display:grid;gap:10px}
+.vtel a{display:flex;align-items:center;gap:13px;background:rgba(255,255,255,.14);border-radius:14px;padding:13px 16px;font-weight:800;font-size:16px;transition:background .2s}
+.vtel a:hover{background:rgba(255,255,255,.25)}
+.vtel svg{width:19px;height:19px;flex:none}
+.vtel small{display:block;font-size:11px;font-weight:700;opacity:.78;letter-spacing:.03em}
+.vnote{margin:16px 0 0;font-size:12px;color:rgba(255,255,255,.75);font-weight:700}
+
+/* ---------- guias ---------- */
+.ggrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.gcard{background:#fff;border:1px solid var(--line);border-radius:var(--r-card);overflow:hidden;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.gcard:hover{transform:translateY(-4px);box-shadow:var(--sh-2)}
+.gmedia{aspect-ratio:16/9;position:relative;background:var(--bg-2);overflow:hidden}
+.gmedia svg{position:absolute;inset:0;width:100%;height:100%}
+.gtag{position:absolute;top:12px;left:12px;background:#fff;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--red-600);padding:6px 10px;border-radius:999px;box-shadow:var(--sh-1)}
+.gbody{padding:18px}
+.gbody h3{font-size:16.5px;font-weight:800;line-height:1.35;margin:0 0 8px;letter-spacing:-.01em}
+.gbody p{margin:0 0 12px;font-size:13.5px;color:var(--mut);font-weight:600;line-height:1.6}
+.glink{font-size:13.5px;font-weight:800;color:var(--red-600);display:inline-flex;gap:6px;align-items:center}
+.glink svg{width:15px;height:15px;transition:transform .2s var(--ease)}
+.gcard:hover .glink svg{transform:translateX(3px)}
+
+/* ---------- testemunhos ---------- */
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.tcard{background:#fff;border:1px solid var(--line);border-radius:var(--r-card);padding:24px;display:flex;flex-direction:column}
+.tstars{color:var(--amber);letter-spacing:2px;font-size:14px;margin-bottom:12px}
+.tcard blockquote{margin:0 0 18px;font-size:14.5px;font-weight:600;color:var(--ink-2);line-height:1.65;flex:1}
+.tperson{display:flex;gap:12px;align-items:center}
+.tava{width:40px;height:40px;border-radius:50%;background:var(--ink);color:#fff;font-weight:800;font-size:13px;display:grid;place-items:center;flex:none}
+.tperson b{display:block;font-size:14px}
+.tperson span{display:block;font-size:12px;color:var(--mut);font-weight:600}
+
+/* ---------- FAQ ---------- */
+.faq{max-width:760px;margin-inline:auto}
+.faq details{border:1px solid var(--line);border-radius:14px;background:#fff;margin-bottom:10px;overflow:hidden}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:16px;align-items:center;padding:18px 20px;font-weight:800;font-size:15px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary svg{width:18px;height:18px;color:var(--mut);flex:none;transition:transform .25s var(--ease)}
+.faq details[open] summary svg{transform:rotate(45deg)}
+.faq .fa{padding:0 20px 18px;font-size:14px;color:var(--mut);font-weight:600;line-height:1.7}
+
+/* ---------- escritórios ---------- */
+.egrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.ecard{display:grid;grid-template-columns:150px 1fr;background:#fff;border:1px solid var(--line);border-radius:var(--r-card);overflow:hidden}
+.emap{position:relative;background:var(--bg-2)}
+.emap svg{position:absolute;inset:0;width:100%;height:100%}
+.ebody{padding:20px 22px}
+.ebody h3{margin:0 0 6px;font-size:17px;font-weight:800;letter-spacing:-.01em}
+.ebody address{font-style:normal;font-size:13.5px;color:var(--mut);font-weight:600;line-height:1.6;margin:0 0 13px}
+.emeta{display:flex;flex-wrap:wrap;gap:8px}
+.emeta span,.emeta a{display:inline-flex;gap:6px;align-items:center;font-size:12px;font-weight:800;border:1px solid var(--line-2);border-radius:999px;padding:6px 12px;color:var(--ink-2)}
+.emeta a:hover{border-color:var(--red-500);color:var(--red-600)}
+.emeta svg{width:13px;height:13px;flex:none}
+
+/* ---------- rodapé ---------- */
+.site-foot{background:var(--ink);color:#B9B6BF;font-size:13.5px}
+.foot-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1.35fr;gap:32px;padding:clamp(44px,6vw,64px) 0 40px;border-bottom:1px solid rgba(255,255,255,.1)}
+.foot-brand .brand-txt b{color:#fff}
+.foot-brand>p{font-size:13px;font-weight:600;color:#8E8B95;max-width:30ch;margin:14px 0 18px;line-height:1.65}
+.socials{display:flex;gap:8px}
+.socials a{width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.18);display:grid;place-items:center;transition:background .2s}
+.socials a:hover{background:rgba(255,255,255,.12)}
+.socials svg{width:15px;height:15px;color:#fff}
+.foot-top h4{font-size:11px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#6F6C77;margin:0 0 14px}
+.foot-top ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.foot-top ul a{font-weight:600;transition:color .2s}
+.foot-top ul a:hover{color:#fff}
+.foot-contact li{display:flex;gap:9px;align-items:flex-start;font-weight:600;line-height:1.5}
+.foot-contact svg{width:14px;height:14px;color:var(--red-400);flex:none;margin-top:3px}
+.foot-contact a:hover{color:#fff}
+.foot-bot{display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:space-between;padding:20px 0;font-size:12px;font-weight:600;color:#6F6C77}
+
+/* ---------- botão flutuante ---------- */
+.fab{position:fixed;right:18px;bottom:18px;z-index:70;display:inline-flex;align-items:center;gap:9px;background:#128C7E;color:#fff;padding:13px 18px;border-radius:999px;font-size:14px;font-weight:800;box-shadow:0 16px 34px -12px rgba(18,140,126,.75);transition:transform .2s var(--ease)}
+.fab:hover{transform:translateY(-2px)}
+.fab svg{width:19px;height:19px;flex:none}
+
+/* ---------- modal ---------- */
+.modal{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:18px;background:rgba(18,12,18,.55);backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .25s var(--ease)}
+.modal.aberto{opacity:1;pointer-events:auto}
+.mbox{background:#fff;border-radius:20px;max-width:880px;width:100%;max-height:calc(100vh - 36px);overflow:auto;transform:translateY(14px) scale(.98);transition:transform .3s var(--ease)}
+.modal.aberto .mbox{transform:none}
+.mmedia{position:relative;aspect-ratio:16/7.6;background:var(--bg-2);overflow:hidden}
+.mmedia svg{position:absolute;inset:0;width:100%;height:100%}
+.mmedia .pbadge{position:absolute;top:14px;left:14px}
+.mclose{position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:50%;border:0;background:rgba(255,255,255,.95);display:grid;place-items:center;cursor:pointer;box-shadow:var(--sh-1)}
+.mclose svg{width:16px;height:16px;color:var(--ink)}
+.mbody{padding:clamp(20px,3vw,30px);display:grid;grid-template-columns:1.5fr 1fr;gap:clamp(20px,3vw,34px)}
+.mtitle{font-size:clamp(20px,2.4vw,25px);font-weight:800;letter-spacing:-.015em;margin:0 0 8px;line-height:1.2}
+.mprice{font-size:clamp(24px,3vw,30px);font-weight:800;letter-spacing:-.02em;margin:14px 0 0}
+.mprice small{font-size:13px;color:var(--mut);font-weight:700}
+.mspecs{display:flex;gap:18px;flex-wrap:wrap;border-block:1px solid var(--line);padding:14px 0;margin:14px 0}
+.mspecs span{display:flex;gap:7px;align-items:center;font-size:13.5px;font-weight:700;color:var(--ink-2)}
+.mspecs svg{width:16px;height:16px;color:var(--mut);flex:none}
+.mdesc{font-size:14.5px;color:var(--ink-2);font-weight:500;line-height:1.7;margin:0}
+.mextras{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.mextras span{font-size:12px;font-weight:700;background:var(--bg-2);border-radius:999px;padding:7px 12px;color:var(--ink-2)}
+.magent{border:1px solid var(--line);border-radius:16px;padding:20px;align-self:start;position:sticky;top:0;background:#fff}
+.magent-p{display:flex;gap:12px;align-items:center;margin-bottom:14px}
+.mava{width:46px;height:46px;border-radius:50%;background:var(--grad);color:#fff;font-weight:800;display:grid;place-items:center;font-size:15px;flex:none}
+.magent-p b{display:block;font-size:15px}
+.magent-p span span{display:block;font-size:12px;color:var(--mut);font-weight:600}
+.magent .btn{width:100%;margin-top:8px}
+.mref{margin-top:14px;font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);text-align:center}
+body.travado{overflow:hidden}
+
+/* ---------- revelação ---------- */
+[data-reveal]{opacity:0;transform:translateY(18px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+[data-reveal].is-in{opacity:1;transform:none}
+
+/* ---------- responsivo ---------- */
+@media(max-width:1020px){
+  .nav{display:none}
+  .burger{display:grid}
+  .head-in{gap:12px}
+  .brand{margin-right:auto}
+  .pgrid{grid-template-columns:repeat(2,1fr)}
+  .zgrid{grid-template-columns:repeat(2,1fr)}
+  .wgrid,.ggrid,.tgrid{grid-template-columns:1fr 1fr}
+  .dgrid,.vgrid{grid-template-columns:1fr}
+  .egrid{grid-template-columns:1fr}
+  .foot-top{grid-template-columns:1fr 1fr}
+  .sfields{grid-template-columns:1fr 1fr}
+  .sgo{grid-column:1/-1}
+  .sgo .btn{width:100%}
+  .mbody{grid-template-columns:1fr}
+  .magent{position:static}
+}
+@media(max-width:640px){
+  .tb-tel{display:none}
+  .head-anunciar{display:none}
+  .pgrid,.wgrid,.ggrid,.tgrid,.zgrid{grid-template-columns:1fr}
+  .zcard:nth-child(1),.zcard:nth-child(6){grid-column:span 1;grid-row:span 1}
+  .sfields{grid-template-columns:1fr}
+  .ecard{grid-template-columns:1fr}
+  .emap{position:relative;height:130px}
+  .foot-top{grid-template-columns:1fr}
+  .fab span{display:none}
+  .fab{padding:15px}
+  .search-wrap{margin-top:-72px}
+  .hero-in{padding-bottom:100px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ SPRITE SVG: gradientes, logótipo, cenas e ícones ============ -->
+<svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<defs>
+<linearGradient id="gRed" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#761517"/><stop offset=".6" stop-color="#A31B1D"/><stop offset="1" stop-color="#BE2A2C"/></linearGradient>
+<linearGradient id="gSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#241C33"/><stop offset=".38" stop-color="#63304A"/><stop offset=".66" stop-color="#C25B45"/><stop offset=".85" stop-color="#F0A45C"/><stop offset="1" stop-color="#F7BE7A"/></linearGradient>
+<linearGradient id="gSkyLite" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3A2A47"/><stop offset=".5" stop-color="#A85048"/><stop offset=".85" stop-color="#F0A45C"/></linearGradient>
+<linearGradient id="gSea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A85149"/><stop offset="1" stop-color="#241E33"/></linearGradient>
+<linearGradient id="gSeaBlue" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3A7A80"/><stop offset="1" stop-color="#16404A"/></linearGradient>
+<linearGradient id="gGlass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F5B25A"/><stop offset="1" stop-color="#C4633C"/></linearGradient>
+<linearGradient id="gPool" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E08A5C"/><stop offset="1" stop-color="#6E4458"/></linearGradient>
+<linearGradient id="gBlue" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#202748"/><stop offset=".55" stop-color="#5A3A5E"/><stop offset="1" stop-color="#C97355"/></linearGradient>
+<clipPath id="lgClip"><path d="M18 0H118C163 0 200 37 200 82V182C200 192 192 200 182 200H82C37 200 0 163 0 118V18C0 8 8 0 18 0Z"/></clipPath>
+<g id="palm">
+<path d="M43 140l7 0c-2-40 4-80-2-118l-9 2c8 37 2 76 4 116z"/>
+<path d="M44 22C24 6 6 8 0 20 14 18 30 24 44 22z"/>
+<path d="M44 22C60 4 82 4 92 14 76 14 58 20 44 22z"/>
+<path d="M44 22C30 36 12 40 2 36 14 30 30 26 44 22z"/>
+<path d="M44 22C58 36 78 40 90 36 76 30 58 26 44 22z"/>
+<path d="M44 22C40 6 46 0 56 -2 50 8 48 14 44 22z"/>
+</g>
+</defs>
+
+<!-- emblema recriado a partir do logótipo enviado -->
+<symbol id="lg-mark" viewBox="0 0 200 200">
+<path d="M18 0H118C163 0 200 37 200 82V182C200 192 192 200 182 200H82C37 200 0 163 0 118V18C0 8 8 0 18 0Z" fill="url(#gRed)"/>
+<g clip-path="url(#lgClip)">
+<g fill="none" stroke="#fff" stroke-width="11" stroke-linejoin="round" stroke-linecap="round">
+<path d="M30 130 84 82 112 108"/>
+<path d="M98 124 140 76 184 122"/>
+<path d="M106 122V150M176 128V150"/>
+</g>
+<rect x="126" y="100" width="30" height="42" fill="#fff"/>
+<rect x="131" y="105" width="9" height="14" fill="url(#gRed)"/><rect x="142" y="105" width="9" height="14" fill="url(#gRed)"/>
+<rect x="131" y="121" width="9" height="16" fill="url(#gRed)"/><rect x="142" y="121" width="9" height="16" fill="url(#gRed)"/>
+<path d="M-6 154C58 130 132 162 206 134" stroke="#fff" stroke-width="12" fill="none"/>
+<path d="M-6 178C64 154 138 184 206 158" stroke="#fff" stroke-width="9" fill="none"/>
+</g>
+</symbol>
+
+<!-- cena herói: baía de Luanda ao pôr-do-sol -->
+<symbol id="sc-hero" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+<rect width="1600" height="900" fill="url(#gSky)"/>
+<circle cx="1150" cy="596" r="150" fill="#FFD9A8" opacity=".22"/>
+<circle cx="1150" cy="596" r="86" fill="#FFE3B4"/>
+<g fill="#2A2440">
+<rect x="620" y="480" width="46" height="130"/><rect x="676" y="452" width="34" height="158"/><rect x="720" y="500" width="52" height="110"/><rect x="782" y="430" width="30" height="180"/><rect x="822" y="472" width="44" height="138"/><rect x="876" y="502" width="60" height="108"/><rect x="946" y="466" width="36" height="144"/><rect x="992" y="512" width="48" height="98"/>
+</g>
+<g fill="#191627">
+<rect x="40" y="330" width="90" height="290"/><rect x="150" y="382" width="70" height="238"/><rect x="240" y="300" width="110" height="320"/><rect x="370" y="410" width="80" height="210"/><rect x="470" y="360" width="66" height="260"/>
+</g>
+<g fill="#F5B25A" opacity=".9">
+<rect x="56" y="352" width="10" height="7"/><rect x="86" y="352" width="10" height="7"/><rect x="56" y="386" width="10" height="7"/><rect x="102" y="410" width="10" height="7"/><rect x="70" y="446" width="10" height="7"/><rect x="96" y="478" width="10" height="7"/>
+<rect x="262" y="322" width="12" height="8"/><rect x="292" y="322" width="12" height="8"/><rect x="322" y="352" width="12" height="8"/><rect x="262" y="384" width="12" height="8"/><rect x="306" y="418" width="12" height="8"/><rect x="276" y="452" width="12" height="8"/><rect x="322" y="486" width="12" height="8"/>
+<rect x="166" y="402" width="9" height="6"/><rect x="192" y="436" width="9" height="6"/><rect x="386" y="430" width="9" height="6"/><rect x="418" y="466" width="9" height="6"/><rect x="486" y="380" width="9" height="6"/><rect x="508" y="418" width="9" height="6"/>
+</g>
+<rect y="610" width="1600" height="170" fill="url(#gSea)"/>
+<g fill="#FFC98C">
+<rect x="1076" y="620" width="150" height="5" opacity=".8"/><rect x="1096" y="634" width="112" height="4" opacity=".65"/><rect x="1086" y="648" width="130" height="4" opacity=".5"/><rect x="1108" y="664" width="90" height="3" opacity=".4"/><rect x="1092" y="682" width="118" height="3" opacity=".3"/><rect x="1116" y="702" width="72" height="3" opacity=".22"/>
+</g>
+<g fill="#171325">
+<path d="M700 668h64l-10 14h-44z"/><path d="M960 700h52l-8 12h-36z"/><path d="M540 706h44l-7 10h-30z"/>
+</g>
+<path d="M-20 800C420 742 980 812 1620 748" stroke="#14111E" stroke-width="56" fill="none"/>
+<path d="M-20 800C420 742 980 812 1620 748" stroke="#E8A13C" stroke-width="3" stroke-dasharray="30 26" fill="none" opacity=".85"/>
+<path d="M-20 826C420 768 980 838 1620 774L1620 900L-20 900Z" fill="#120F19"/>
+<use href="#palm" transform="translate(150,678) scale(1.15)" fill="#0E0B15"/>
+<use href="#palm" transform="translate(400,700) scale(.95)" fill="#0E0B15"/>
+<use href="#palm" transform="translate(700,716) scale(1.05)" fill="#0E0B15"/>
+<use href="#palm" transform="translate(1060,708) scale(.9)" fill="#0E0B15"/>
+<use href="#palm" transform="translate(1360,690) scale(1.2)" fill="#0E0B15"/>
+</symbol>
+
+<!-- vivenda Talatona -->
+<symbol id="sc-villa" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+<rect width="400" height="300" fill="url(#gSkyLite)"/>
+<circle cx="318" cy="96" r="34" fill="#FFE0A8" opacity=".9"/>
+<rect y="212" width="400" height="88" fill="#3A2C3E"/>
+<rect x="52" y="118" width="212" height="98" fill="#F2EADB"/>
+<rect x="52" y="118" width="212" height="98" fill="#000000" opacity=".07"/>
+<rect x="52" y="108" width="230" height="14" fill="#241C2B"/>
+<rect x="180" y="70" width="150" height="146" fill="#EDE2CE"/>
+<rect x="168" y="60" width="174" height="14" fill="#241C2B"/>
+<rect x="200" y="96" width="106" height="104" fill="url(#gGlass)"/>
+<g stroke="#241C2B" stroke-width="5"><path d="M236 96v104M271 96v104M200 148h106"/></g>
+<rect x="76" y="150" width="34" height="66" fill="#2E2433"/>
+<rect x="126" y="150" width="34" height="42" fill="url(#gGlass)" opacity=".85"/>
+<rect x="40" y="216" width="320" height="8" fill="#4A3A4E"/>
+<rect x="60" y="236" width="260" height="34" fill="url(#gPool)"/>
+<g stroke="#FFD9A8" stroke-width="2" opacity=".55"><path d="M72 246h96M180 256h120M92 264h140"/></g>
+<use href="#palm" transform="translate(330,120) scale(.85)" fill="#241A2B"/>
+<rect y="270" width="400" height="30" fill="#2A2030"/>
+</symbol>
+
+<!-- torres do Kilamba -->
+<symbol id="sc-towers" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+<rect width="400" height="300" fill="url(#gSkyLite)"/>
+<circle cx="70" cy="84" r="26" fill="#FFE0A8" opacity=".85"/>
+<rect y="236" width="400" height="64" fill="#3A2C42"/>
+<rect x="16" y="102" width="62" height="134" fill="#C4574A"/>
+<rect x="90" y="66" width="62" height="170" fill="#DB9660"/>
+<rect x="164" y="116" width="62" height="120" fill="#8E5F73"/>
+<rect x="238" y="82" width="62" height="154" fill="#C4574A"/>
+<rect x="312" y="124" width="70" height="112" fill="#B0788A"/>
+<g fill="#2B2135" opacity=".28"><rect x="16" y="102" width="14" height="134"/><rect x="90" y="66" width="14" height="170"/><rect x="164" y="116" width="14" height="120"/><rect x="238" y="82" width="14" height="154"/><rect x="312" y="124" width="16" height="112"/></g>
+<g fill="#FFE9C4">
+<rect x="42" y="116" width="9" height="7"/><rect x="60" y="116" width="9" height="7"/><rect x="42" y="140" width="9" height="7" opacity=".5"/><rect x="60" y="164" width="9" height="7"/><rect x="42" y="188" width="9" height="7" opacity=".6"/>
+<rect x="116" y="80" width="9" height="7"/><rect x="134" y="80" width="9" height="7" opacity=".55"/><rect x="116" y="106" width="9" height="7"/><rect x="134" y="132" width="9" height="7"/><rect x="116" y="158" width="9" height="7" opacity=".5"/><rect x="134" y="184" width="9" height="7"/>
+<rect x="190" y="130" width="9" height="7"/><rect x="208" y="156" width="9" height="7" opacity=".6"/><rect x="190" y="182" width="9" height="7"/>
+<rect x="264" y="96" width="9" height="7"/><rect x="282" y="96" width="9" height="7" opacity=".5"/><rect x="264" y="122" width="9" height="7"/><rect x="282" y="148" width="9" height="7"/><rect x="264" y="174" width="9" height="7" opacity=".55"/>
+<rect x="338" y="138" width="9" height="7"/><rect x="356" y="164" width="9" height="7" opacity=".6"/><rect x="338" y="190" width="9" height="7"/>
+</g>
+<g fill="#241A2E"><circle cx="40" cy="240" r="14"/><circle cx="150" cy="242" r="12"/><circle cx="260" cy="240" r="14"/><circle cx="368" cy="242" r="12"/></g>
+<rect x="98" y="216" width="3" height="26" fill="#241A2E"/><circle cx="99.5" cy="214" r="4" fill="#FFD9A8"/>
+<rect x="304" y="216" width="3" height="26" fill="#241A2E"/><circle cx="305.5" cy="214" r="4" fill="#FFD9A8"/>
+</symbol>
+
+<!-- Ilha do Cabo -->
+<symbol id="sc-beach" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+<rect width="400" height="300" fill="url(#gSkyLite)"/>
+<circle cx="96" cy="88" r="30" fill="#FFE0A8" opacity=".9"/>
+<rect y="150" width="400" height="86" fill="url(#gSeaBlue)"/>
+<g fill="#EAF7F2" opacity=".7"><rect x="30" y="168" width="70" height="3"/><rect x="150" y="186" width="90" height="3"/><rect x="290" y="170" width="70" height="3"/><rect x="80" y="206" width="110" height="3"/><rect x="250" y="212" width="86" height="3"/></g>
+<path d="M0 236C120 224 280 246 400 230L400 300L0 300Z" fill="#E9C896"/>
+<path d="M0 236C120 224 280 246 400 230" stroke="#F7E4BE" stroke-width="5" fill="none"/>
+<rect x="252" y="118" width="112" height="66" fill="#F6F1E6"/>
+<rect x="244" y="106" width="128" height="14" fill="#241C2B"/>
+<rect x="266" y="136" width="30" height="48" fill="url(#gGlass)"/>
+<rect x="312" y="136" width="38" height="30" fill="url(#gGlass)" opacity=".9"/>
+<rect x="240" y="184" width="136" height="7" fill="#CBB089"/>
+<g fill="#1E2A38"><path d="M96 142h52l-9 11h-34z"/><path d="M190 128h40l-7 9h-26z"/></g>
+<use href="#palm" transform="translate(36,150) scale(1)" fill="#22303A"/>
+<use href="#palm" transform="translate(352,150) scale(.8)" fill="#22303A"/>
+<path d="M150 214a26 26 0 0 1 52 0z" fill="#A31B1D"/>
+<rect x="174" y="214" width="4" height="34" fill="#3A2C2E"/>
+</symbol>
+
+<!-- interior de apartamento -->
+<symbol id="sc-apartment" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+<rect width="400" height="300" fill="#EFE7DA"/>
+<rect y="216" width="400" height="84" fill="#C6A278"/>
+<g stroke="#B08C64" stroke-width="2"><path d="M0 240h400M0 268h400M80 216v84M200 216v84M320 216v84"/></g>
+<rect x="216" y="40" width="156" height="176" fill="#241C2B"/>
+<rect x="224" y="48" width="140" height="160" fill="url(#gSkyLite)"/>
+<circle cx="330" cy="96" r="18" fill="#FFE0A8"/>
+<g fill="#241C2B" opacity=".85"><rect x="238" y="150" width="16" height="58"/><rect x="262" y="132" width="14" height="76"/><rect x="284" y="158" width="18" height="50"/><rect x="312" y="144" width="14" height="64"/></g>
+<path d="M293 48v160M224 128h140" stroke="#241C2B" stroke-width="7"/>
+<rect x="36" y="140" width="150" height="30" rx="10" fill="#554A62"/>
+<rect x="36" y="160" width="150" height="56" rx="10" fill="#4A4056"/>
+<rect x="48" y="150" width="34" height="22" rx="6" fill="#C4574A"/>
+<rect x="92" y="150" width="34" height="22" rx="6" fill="#DB9660"/>
+<rect x="30" y="214" width="162" height="8" rx="4" fill="#3A3244"/>
+<ellipse cx="120" cy="252" rx="88" ry="14" fill="#B39074"/>
+<rect x="196" y="120" width="4" height="96" fill="#2E2433"/>
+<path d="M182 104h32l-6 20h-20z" fill="#F0C27A"/>
+<circle cx="198" cy="118" r="7" fill="#FFE6B0" opacity=".8"/>
+<g fill="#2F4A3A"><path d="M370 216c2-30-10-44-6-64 10 14 12 34 10 64z"/><path d="M372 216c-12-24-30-28-36-46 16 4 30 20 36 46z"/><path d="M374 216c8-20 22-24 26-40-14 4-24 20-26 40z"/></g>
+<rect x="356" y="214" width="34" height="24" rx="4" fill="#A0522D"/>
+</symbol>
+
+<!-- torre de escritórios na Baixa -->
+<symbol id="sc-office" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+<rect width="400" height="300" fill="url(#gBlue)"/>
+<circle cx="330" cy="80" r="24" fill="#FFE0A8" opacity=".7"/>
+<rect x="20" y="120" width="80" height="128" fill="#20263E"/>
+<rect x="312" y="96" width="70" height="152" fill="#20263E"/>
+<g fill="#F5B25A" opacity=".75"><rect x="34" y="136" width="9" height="7"/><rect x="58" y="164" width="9" height="7"/><rect x="34" y="196" width="9" height="7"/><rect x="330" y="112" width="9" height="7"/><rect x="352" y="144" width="9" height="7"/><rect x="330" y="180" width="9" height="7"/></g>
+<rect x="120" y="26" width="160" height="222" fill="#2A3352"/>
+<rect x="130" y="36" width="32" height="168" fill="#38426B"/>
+<rect x="168" y="36" width="32" height="168" fill="#313B60"/>
+<rect x="206" y="36" width="32" height="168" fill="#38426B"/>
+<rect x="244" y="36" width="32" height="168" fill="#313B60"/>
+<g stroke="#232B48" stroke-width="4"><path d="M120 66h160M120 96h160M120 126h160M120 156h160M120 186h160"/></g>
+<g fill="#F5B25A" opacity=".9"><rect x="168" y="70" width="32" height="22"/><rect x="244" y="130" width="32" height="22"/><rect x="130" y="160" width="32" height="22"/></g>
+<rect x="108" y="210" width="184" height="38" fill="#232B48"/>
+<rect x="178" y="222" width="44" height="26" fill="#FFD9A8" opacity=".85"/>
+<rect y="248" width="400" height="52" fill="#191627"/>
+<rect x="60" y="228" width="3" height="22" fill="#10131F"/><circle cx="61.5" cy="226" r="4" fill="#FFD9A8"/>
+<rect x="338" y="228" width="3" height="22" fill="#10131F"/><circle cx="339.5" cy="226" r="4" fill="#FFD9A8"/>
+</symbol>
+
+<!-- terreno em Benfica -->
+<symbol id="sc-terreno" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+<rect width="400" height="300" fill="url(#gSkyLite)"/>
+<circle cx="86" cy="92" r="30" fill="#FFE0A8" opacity=".9"/>
+<path d="M0 176h400v124H0z" fill="#B98A5C"/>
+<path d="M0 176h400v10H0z" fill="#8F6A46"/>
+<g stroke="#D8B586" stroke-width="4" opacity=".8"><path d="M40 300l58-118M360 300l-58-118M0 236h400M0 270h400"/></g>
+<rect x="96" y="150" width="5" height="34" fill="#F6F1E6"/><rect x="96" y="150" width="5" height="8" fill="#A31B1D"/>
+<rect x="298" y="150" width="5" height="34" fill="#F6F1E6"/><rect x="298" y="150" width="5" height="8" fill="#A31B1D"/>
+<path d="M101 156H298" stroke="#A31B1D" stroke-width="2" stroke-dasharray="8 6"/>
+<rect x="330" y="128" width="6" height="50" fill="#2E2433"/>
+<path d="M300 132c8-24 58-24 66 0-10-8-56-8-66 0z" fill="#2E2433"/>
+<rect x="198" y="170" width="6" height="18" fill="#3A2C2E"/>
+<rect x="164" y="128" width="76" height="42" rx="4" fill="#F6F1E6"/>
+<rect x="164" y="128" width="76" height="12" rx="4" fill="url(#gRed)"/>
+<rect x="172" y="148" width="60" height="5" fill="#C9C4CC"/><rect x="172" y="158" width="40" height="5" fill="#C9C4CC"/>
+</symbol>
+
+<!-- vivenda clássica no Miramar -->
+<symbol id="sc-miramar" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+<rect width="400" height="300" fill="url(#gSkyLite)"/>
+<rect x="250" y="150" width="150" height="60" fill="url(#gSeaBlue)"/>
+<g fill="#EAF7F2" opacity=".6"><rect x="262" y="164" width="60" height="3"/><rect x="300" y="184" width="70" height="3"/></g>
+<path d="M0 210C140 186 300 226 400 206L400 300L0 300Z" fill="#4A3A4E"/>
+<path d="M60 132L160 84L260 132z" fill="#A6453C"/>
+<rect x="76" y="132" width="168" height="84" fill="#F2E7D2"/>
+<path d="M96 156h28v60h-28z" fill="#2E2433"/>
+<path d="M96 156a14 14 0 0 1 28 0" fill="#2E2433"/>
+<path d="M150 156h28v34h-28z" fill="url(#gGlass)"/>
+<path d="M150 156a14 14 0 0 1 28 0" fill="url(#gGlass)"/>
+<path d="M204 156h28v34h-28z" fill="url(#gGlass)" opacity=".9"/>
+<path d="M204 156a14 14 0 0 1 28 0" fill="url(#gGlass)" opacity=".9"/>
+<g fill="#C24A6E"><circle cx="80" cy="140" r="12"/><circle cx="94" cy="132" r="9"/><circle cx="70" cy="152" r="8"/><circle cx="246" cy="212" r="10"/><circle cx="258" cy="206" r="7"/></g>
+<path d="M50 244h130M62 228h110" stroke="#5C4A62" stroke-width="5"/>
+<use href="#palm" transform="translate(320,120) scale(.9)" fill="#241A2B"/>
+</symbol>
+
+<!-- mini-mapa dos escritórios -->
+<symbol id="mp-base" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice">
+<rect width="200" height="260" fill="#EFEDF2"/>
+<g stroke="#FFFFFF" stroke-width="10"><path d="M-10 60H210M-10 150H210M-10 215H210M55 -10V270M140 -10V270"/></g>
+<g stroke="#DEDCE4" stroke-width="3"><path d="M-10 105h220M100 -10v280"/></g>
+<rect x="10" y="10" width="35" height="38" fill="#E2E0E8"/><rect x="65" y="72" width="60" height="60" fill="#E2E0E8"/><rect x="150" y="165" width="40" height="38" fill="#E2E0E8"/><rect x="14" y="168" width="30" height="35" fill="#E2E0E8"/>
+<path d="M100 92c-15 0-26 11-26 25 0 18 26 40 26 40s26-22 26-40c0-14-11-25-26-25z" fill="url(#gRed)"/>
+<circle cx="100" cy="116" r="8" fill="#fff"/>
+</symbol>
+
+<!-- ícones -->
+<symbol id="ic-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></g></symbol>
+<symbol id="ic-phone" viewBox="0 0 24 24"><path fill="currentColor" d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11 11 0 0 0 3.4.55 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11 11 0 0 0 .55 3.4 1 1 0 0 1-.24 1z"/></symbol>
+<symbol id="ic-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.6-6.1c-.3-.1-1.5-.8-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.7.8-.8 1-.2.2-.3.2-.6.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4 0-.5.2-.7l.5-.6c.1-.2.1-.4 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.7.6.7.2 1.3.2 1.8.1.6-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/></symbol>
+<symbol id="ic-heart" viewBox="0 0 24 24"><path stroke-linejoin="round" stroke-linecap="round" d="M12 20.3l-1.2-1.1C6 14.9 3 12.2 3 8.9A4.6 4.6 0 0 1 7.6 4.3c1.7 0 3.3.8 4.4 2a5.8 5.8 0 0 1 4.4-2A4.6 4.6 0 0 1 21 8.9c0 3.3-3 6-7.8 10.3z"/></symbol>
+<symbol id="ic-search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5 21 21"/></g></symbol>
+<symbol id="ic-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M4 12.5l5 5L20 6.5"/></symbol>
+<symbol id="ic-close" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></symbol>
+<symbol id="ic-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M12 5v14M5 12h14"/></symbol>
+<symbol id="ic-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></symbol>
+<symbol id="ic-menu" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></symbol>
+<symbol id="ic-bed" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-7m0 7h18m-18 0v1.5M21 18v1.5M21 18v-4a3 3 0 0 0-3-3H9v7"/><circle cx="6" cy="11.5" r="1.7"/></g></symbol>
+<symbol id="ic-bath" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16v2a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5v-2z"/><path d="M6 12V5.5A2.5 2.5 0 0 1 8.5 3c1.2 0 2.1.8 2.4 1.9M5 21l1-2M19 21l-1-2"/></g></symbol>
+<symbol id="ic-area" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M4 9V4h5M20 15v5h-5M4 4l6 6M20 20l-6-6"/></symbol>
+<symbol id="ic-video" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M3.5 7.5h10a1.5 1.5 0 0 1 1.5 1.5v6a1.5 1.5 0 0 1-1.5 1.5h-10A1.5 1.5 0 0 1 2 15V9a1.5 1.5 0 0 1 1.5-1.5zM15 11l6-3v8l-6-3z"/></symbol>
+<symbol id="ic-doc" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M6.5 3H14l4 4v13.5H6.5zM14 3v4h4M10 12h5M10 15.5h5"/></symbol>
+<symbol id="ic-shield" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M12 3l7 2.6v5.2c0 4.6-3 8.2-7 10.2-4-2-7-5.6-7-10.2V5.6zM8.8 12l2.3 2.3 4.2-4.3"/></symbol>
+<symbol id="ic-globe" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.6 2.4 4 5.3 4 8.5s-1.4 6.1-4 8.5c-2.6-2.4-4-5.3-4-8.5s1.4-6.1 4-8.5z"/></g></symbol>
+<symbol id="ic-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3.2 2"/></g></symbol>
+<symbol id="ic-build" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M5 21V4.5L12 3v18M12 8l7 1.8V21M5 21h16M8 7.5h1M8 11h1M8 14.5h1M15 12h1M15 15.5h1"/></symbol>
+<symbol id="ic-house" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M4 11.5L12 4.5l8 7M6.5 10v10.5h11V10M10 20.5v-5h4v5"/></symbol>
+<symbol id="ic-brief" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M4 8h16v12H4zM9 8V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M4 13h16"/></symbol>
+<symbol id="ic-land" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M6 20L9 6M18 20L15 6M3 15.5h18M3 20h18M9.8 10h4.4"/></symbol>
+<symbol id="ic-pool" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M8 17V6a2 2 0 0 1 4 0M14 17V6a2 2 0 0 1 4 0M8 9.5h6M8 13.5h6M3 19.5c1.5-1.2 3-1.2 4.5 0s3 1.2 4.5 0 3-1.2 4.5 0 3 1.2 4.5 0"/></symbol>
+<symbol id="ic-umb" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M12 3.5a8.5 8.5 0 0 1 8.5 8.5h-17A8.5 8.5 0 0 1 12 3.5zM12 12v6.5a2 2 0 0 0 4 0M12 3.5V2.2"/></symbol>
+<symbol id="ic-tag" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M3.5 12.5v-9h9L21 12l-8.5 8.5z"/><circle cx="8" cy="8" r="1.4"/></g></symbol>
+<symbol id="ic-star" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M12 3.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8L12 16.9l-5.3 2.7 1-5.8-4.2-4.1 5.9-.9z"/></symbol>
+<symbol id="ic-fb" viewBox="0 0 24 24"><path fill="currentColor" d="M13.5 21v-7h2.4l.4-2.8h-2.8V9.4c0-.8.3-1.4 1.5-1.4h1.4V5.5C16 5.4 15 5.3 14 5.3c-2.3 0-3.9 1.4-3.9 4v1.9H7.7V14h2.4v7z"/></symbol>
+<symbol id="ic-ig" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="4"/></g><circle cx="17" cy="7" r="1.3" fill="currentColor"/></symbol>
+<symbol id="ic-li" viewBox="0 0 24 24"><path fill="currentColor" d="M6.3 9.2H3.6V20h2.7zM4.9 7.9a1.6 1.6 0 1 0 0-3.2 1.6 1.6 0 0 0 0 3.2zM20.4 20h-2.7v-5.6c0-1.4-.5-2.3-1.7-2.3-.9 0-1.5.6-1.7 1.2-.1.2-.1.5-.1.8V20h-2.7V9.2h2.7v1.5c.4-.6 1.1-1.5 2.7-1.5 2 0 3.5 1.3 3.5 4.1z"/></symbol>
+<symbol id="ic-yt" viewBox="0 0 24 24"><path fill="currentColor" d="M21.3 7.3a2.5 2.5 0 0 0-1.7-1.8C18 5 12 5 12 5s-6 0-7.6.5A2.5 2.5 0 0 0 2.7 7.3 26 26 0 0 0 2.3 12a26 26 0 0 0 .4 4.7 2.5 2.5 0 0 0 1.7 1.8C6 19 12 19 12 19s6 0 7.6-.5a2.5 2.5 0 0 0 1.7-1.8 26 26 0 0 0 .4-4.7 26 26 0 0 0-.4-4.7zM10 15.2V8.8L15.5 12z"/></symbol>
+</svg>
+
+<!-- ============ BARRA SUPERIOR ============ -->
+<div class="topbar"><div class="wrap topbar-in">
+<span class="loc"><svg><use href="#ic-pin"/></svg>Talatona · Ilha do Cabo — Luanda, Angola</span>
+<a class="tb-tel" href="tel:+244922284999"><svg><use href="#ic-phone"/></svg>+244 922 284 999</a>
+<a class="tb-tel" href="tel:+351969912742"><svg><use href="#ic-phone"/></svg>+351 969 912 742</a>
+<div class="moeda" role="group" aria-label="Moeda dos preços">
+<button class="moeda-btn" data-moeda="kz" aria-pressed="true">Kz</button>
+<button class="moeda-btn" data-moeda="eur" aria-pressed="false">€</button>
+</div>
+</div></div>
+
+<!-- ============ CABEÇALHO ============ -->
+<header class="site-head" id="topo"><div class="wrap head-in">
+<a class="brand" href="#topo" aria-label="House4Us — início">
+<svg aria-hidden="true"><use href="#lg-mark"/></svg>
+<span class="brand-txt"><b>House<i>4</i>Us</b><span>Mediação Imobiliária</span></span>
+</a>
+<nav class="nav" aria-label="Navegação principal">
+<a href="#destaques" data-nav-neg="venda">Comprar</a>
+<a href="#destaques" data-nav-neg="arrendamento">Arrendar</a>
+<a href="#zonas">Zonas</a>
+<a href="#diaspora">Diáspora</a>
+<a href="#guias">Guias</a>
+<a href="#contacto">Contacto</a>
+</nav>
+<span class="saved-ind" title="Imóveis guardados"><svg aria-hidden="true"><use href="#ic-heart"/></svg><span class="saved-badge" id="savedBadge" hidden>0</span></span>
+<a class="btn btn--red head-anunciar" href="#vender">Anunciar imóvel</a>
+<button class="burger" id="btnMenu" aria-label="Abrir menu" aria-expanded="false"><svg aria-hidden="true"><use href="#ic-menu"/></svg></button>
+</div></header>
+
+<!-- menu móvel -->
+<div class="mmenu" id="mmenu">
+<div class="mmenu-panel">
+<div class="mmenu-head">
+<span class="brand-txt"><b>House<i>4</i>Us</b></span>
+<button class="mclose" id="btnMenuFechar" aria-label="Fechar menu" style="position:static"><svg aria-hidden="true"><use href="#ic-close"/></svg></button>
+</div>
+<nav aria-label="Menu móvel">
+<a href="#destaques" data-nav-neg="venda">Comprar</a>
+<a href="#destaques" data-nav-neg="arrendamento">Arrendar</a>
+<a href="#zonas">Zonas</a>
+<a href="#diaspora">Diáspora</a>
+<a href="#vender">Anunciar imóvel</a>
+<a href="#guias">Guias</a>
+<a href="#contacto">Contacto</a>
+</nav>
+<div class="mmenu-div"></div>
+<a class="mmenu-tel" href="tel:+244922284999"><svg><use href="#ic-phone"/></svg>+244 922 284 999</a>
+<a class="mmenu-tel" href="tel:+351969912742"><svg><use href="#ic-phone"/></svg>+351 969 912 742</a>
+<a class="btn btn--red" href="#vender">Anunciar imóvel</a>
+</div>
+</div>
+
+<main>
+<!-- ============ HERÓI ============ -->
+<section class="hero">
+<div class="hero-bg" aria-hidden="true"><svg><use href="#sc-hero"/></svg></div>
+<div class="hero-veil" aria-hidden="true"></div>
+<div class="wrap"><div class="hero-in">
+<p class="hero-over">Mediação imobiliária em Luanda</p>
+<h1>Encontre a casa dos seus sonhos em Luanda</h1>
+<p class="hero-sub">Compra e arrendamento em Talatona, na Ilha do Cabo, no Kilamba e em toda a cidade — com a documentação conferida antes de qualquer visita.</p>
+</div></div>
+</section>
+
+<!-- pesquisa -->
+<div class="search-wrap"><div class="wrap">
+<div class="scard" role="search" aria-label="Pesquisa de imóveis">
+<div class="stabs" role="tablist" aria-label="Tipo de negócio">
+<button class="stab" role="tab" aria-selected="true" data-negocio="venda">Comprar</button>
+<button class="stab" role="tab" aria-selected="false" data-negocio="arrendamento">Arrendar</button>
+</div>
+<div class="sfields">
+<div class="sfield"><label for="fZona">Zona</label>
+<select id="fZona">
+<option value="todas">Toda a Luanda</option>
+<option>Talatona</option><option>Ilha do Cabo</option><option>Kilamba</option><option>Miramar</option><option>Ingombota</option><option>Benfica</option><option>Maianga</option><option>Camama</option><option>Mussulo</option>
+</select></div>
+<div class="sfield"><label for="fTipo">Tipo de imóvel</label>
+<select id="fTipo">
+<option value="todas">Todos</option>
+<option value="apt">Apartamento</option>
+<option value="vivenda">Vivenda</option>
+<option value="escritorio">Escritório</option>
+<option value="terreno">Terreno</option>
+</select></div>
+<div class="sfield"><label for="fPreco">Orçamento</label>
+<select id="fPreco">
+<option value="todas">Qualquer valor</option>
+<option value="b">Até 75M Kz</option>
+<option value="m">75M – 200M Kz</option>
+<option value="a">Acima de 200M Kz</option>
+</select></div>
+<div class="sgo"><button class="btn btn--red" id="btnProcurar"><svg class="bi" aria-hidden="true"><use href="#ic-search"/></svg>Procurar</button></div>
+</div>
+<div class="spop"><span>Populares:</span>
+<button data-zona="Talatona">Talatona</button>
+<button data-zona="Ilha do Cabo">Ilha do Cabo</button>
+<button data-zona="Kilamba">Kilamba</button>
+<button data-zona="Benfica">Benfica</button>
+</div>
+</div>
+<div class="strust">
+<span><svg aria-hidden="true"><use href="#ic-check"/></svg>240+ imóveis em carteira</span>
+<span><svg aria-hidden="true"><use href="#ic-doc"/></svg>Documentação conferida</span>
+<span><svg aria-hidden="true"><use href="#ic-pin"/></svg>2 escritórios em Luanda</span>
+<span><svg aria-hidden="true"><use href="#ic-video"/></svg>Visitas por videochamada</span>
+</div>
+</div></div>
+
+<!-- categorias -->
+<section class="section--cats"><div class="wrap">
+<div class="cats" role="group" aria-label="Categorias rápidas">
+<button class="cat" data-cat="apt" aria-pressed="false"><span class="ico"><svg aria-hidden="true"><use href="#ic-build"/></svg></span>Apartamentos</button>
+<button class="cat" data-cat="vivenda" aria-pressed="false"><span class="ico"><svg aria-hidden="true"><use href="#ic-house"/></svg></span>Vivendas</button>
+<button class="cat" data-cat="escritorio" aria-pressed="false"><span class="ico"><svg aria-hidden="true"><use href="#ic-brief"/></svg></span>Escritórios</button>
+<button class="cat" data-cat="terreno" aria-pressed="false"><span class="ico"><svg aria-hidden="true"><use href="#ic-land"/></svg></span>Terrenos</button>
+<button class="cat" data-cat="piscina" aria-pressed="false"><span class="ico"><svg aria-hidden="true"><use href="#ic-pool"/></svg></span>Com piscina</button>
+<button class="cat" data-cat="mar" aria-pressed="false"><span class="ico"><svg aria-hidden="true"><use href="#ic-umb"/></svg></span>Perto do mar</button>
+<button class="cat" data-cat="ate75" aria-pressed="false"><span class="ico"><svg aria-hidden="true"><use href="#ic-tag"/></svg></span>Até 75M Kz</button>
+<button class="cat" data-cat="luxo" aria-pressed="false"><span class="ico"><svg aria-hidden="true"><use href="#ic-star"/></svg></span>Luxo</button>
+</div>
+</div></section>
+
+<!-- ============ DESTAQUES ============ -->
+<section class="section" id="destaques"><div class="wrap">
+<div class="sec-head" data-reveal>
+<div>
+<p class="overline">Em destaque hoje</p>
+<h2 class="h2">Imóveis seleccionados em Luanda</h2>
+<p class="lede">Carteira actualizada esta semana. Toque num imóvel para abrir a ficha completa, guarde os favoritos e mude os preços para euros na barra do topo.</p>
+</div>
+<div class="pfilters" role="group" aria-label="Filtrar por negócio">
+<button class="chip" data-neg="todos" aria-pressed="false">Tudo</button>
+<button class="chip" data-neg="venda" aria-pressed="true">Venda</button>
+<button class="chip" data-neg="arrendamento" aria-pressed="false">Arrendamento</button>
+</div>
+</div>
+<div class="pgrid" id="pgrid" data-reveal></div>
+<div class="pmore"><button class="btn btn--ghost" id="btnMais" hidden>Mostrar todos os imóveis</button></div>
+</div></section>
+
+<!-- ============ ZONAS ============ -->
+<section class="section section--tint" id="zonas"><div class="wrap">
+<div class="sec-head" data-reveal>
+<div>
+<p class="overline">Onde procurar</p>
+<h2 class="h2">Zonas mais procuradas</h2>
+<p class="lede">Comece pelo bairro — preços, ambiente e distâncias mudam muito de zona para zona. Toque numa zona para filtrar a carteira.</p>
+</div>
+</div>
+<div class="zgrid" data-reveal>
+<button class="zcard" data-zona="Talatona"><svg class="scene" aria-hidden="true"><use href="#sc-villa"/></svg><span class="ztxt"><span class="zname">Talatona</span><span class="zsub" data-zcount="Talatona"></span></span></button>
+<button class="zcard" data-zona="Ilha do Cabo"><svg class="scene" aria-hidden="true"><use href="#sc-beach"/></svg><span class="ztxt"><span class="zname">Ilha do Cabo</span><span class="zsub" data-zcount="Ilha do Cabo"></span></span></button>
+<button class="zcard" data-zona="Kilamba"><svg class="scene" aria-hidden="true"><use href="#sc-towers"/></svg><span class="ztxt"><span class="zname">Kilamba</span><span class="zsub" data-zcount="Kilamba"></span></span></button>
+<button class="zcard" data-zona="Miramar"><svg class="scene" aria-hidden="true"><use href="#sc-miramar"/></svg><span class="ztxt"><span class="zname">Miramar</span><span class="zsub" data-zcount="Miramar"></span></span></button>
+<button class="zcard" data-zona="Ingombota"><svg class="scene" aria-hidden="true"><use href="#sc-office"/></svg><span class="ztxt"><span class="zname">Ingombota</span><span class="zsub" data-zcount="Ingombota"></span></span></button>
+<button class="zcard" data-zona="Benfica"><svg class="scene" aria-hidden="true"><use href="#sc-terreno"/></svg><span class="ztxt"><span class="zname">Benfica</span><span class="zsub" data-zcount="Benfica"></span></span></button>
+</div>
+</div></section>
+
+<!-- ============ PORQUÊ ============ -->
+<section class="section" id="porque"><div class="wrap">
+<div class="sec-head" data-reveal>
+<div>
+<p class="overline">Porquê a House4Us</p>
+<h2 class="h2">Tudo o que precisa para comprar com confiança</h2>
+</div>
+</div>
+<div class="wgrid" data-reveal>
+<div class="wcard">
+<span class="ico"><svg aria-hidden="true"><use href="#ic-shield"/></svg></span>
+<h3>Documentação conferida</h3>
+<p>Antes de qualquer visita, verificamos o título, a certidão e os ónus do imóvel. Sabe sempre exactamente o que está a comprar.</p>
+</div>
+<div class="wcard">
+<span class="ico"><svg aria-hidden="true"><use href="#ic-pin"/></svg></span>
+<h3>Presença real em Luanda</h3>
+<p>Dois escritórios — Talatona e Ilha do Cabo — com equipa própria para visitas, avaliações e negociação no terreno.</p>
+</div>
+<div class="wcard">
+<span class="ico"><svg aria-hidden="true"><use href="#ic-globe"/></svg></span>
+<h3>Feito para a diáspora</h3>
+<p>Linha directa em Portugal, visitas por videochamada e acompanhamento à distância até à escritura, por procuração.</p>
+</div>
+</div>
+</div></section>
+
+<!-- ============ DIÁSPORA ============ -->
+<section class="section diaspora" id="diaspora"><div class="wrap dgrid">
+<div data-reveal>
+<p class="overline">Para quem vive fora</p>
+<h2 class="h2">Compre em Luanda sem sair de Portugal</h2>
+<p class="lede">Acompanhamos angolanos na diáspora em todo o processo — da primeira visita em vídeo à escritura por procuração.</p>
+<ul class="dlist">
+<li><svg aria-hidden="true"><use href="#ic-check"/></svg>Visitas guiadas por videochamada, em directo, com a nossa equipa dentro do imóvel</li>
+<li><svg aria-hidden="true"><use href="#ic-check"/></svg>Documentação verificada e enviada para análise antes de qualquer sinal</li>
+<li><svg aria-hidden="true"><use href="#ic-check"/></svg>Escritura por procuração, com acompanhamento no notário</li>
+<li><svg aria-hidden="true"><use href="#ic-check"/></svg>Linha directa em Portugal: +351 969 912 742</li>
+</ul>
+<div class="dcta">
+<a class="btn btn--wa" href="https://wa.me/351969912742?text=Ol%C3%A1%2C%20vivo%20fora%20de%20Angola%20e%20quero%20comprar%20casa%20em%20Luanda%20com%20a%20House4Us." target="_blank" rel="noopener"><svg class="bi" aria-hidden="true"><use href="#ic-wa"/></svg>WhatsApp (Portugal)</a>
+<a class="btn btn--light" href="tel:+244922284999"><svg class="bi" aria-hidden="true"><use href="#ic-phone"/></svg>Ligar para Luanda</a>
+</div>
+<blockquote class="dquote">«Comprei o meu T3 em Talatona a partir de Lisboa. Duas visitas em vídeo, documentos por e-mail e escritura por procuração — sem uma única viagem.»<b>Ana P. · Diáspora, Lisboa — exemplo ilustrativo do protótipo</b></blockquote>
+</div>
+<div data-reveal>
+<div class="laptop">
+<div class="lap-bar"><i></i><i></i><i></i></div>
+<div class="lap-screen"><svg aria-hidden="true"><use href="#sc-villa"/></svg>
+<span class="lap-chip"><span class="dot"></span>Visita em directo · Vivenda V4, Talatona</span>
+</div>
+</div>
+<div class="lap-base"></div>
+</div>
+</div></section>
+
+<!-- ============ VENDER ============ -->
+<section class="section" id="vender"><div class="wrap vgrid">
+<div data-reveal>
+<p class="overline">Proprietários</p>
+<h2 class="h2">Tem um imóvel? Nós tratamos de tudo.</h2>
+<p class="lede">Da avaliação ao contrato, com o processo documental tratado pela nossa equipa do princípio ao fim.</p>
+<ol class="steps">
+<li><div><h3>Avaliação gratuita em 72 horas</h3><p>Visitamos o imóvel e entregamos uma estimativa de valor com comparáveis reais da zona.</p></div></li>
+<li><div><h3>Fotografia e publicação</h3><p>Sessão fotográfica profissional e anúncio no portal, nas redes sociais e na nossa carteira de compradores.</p></div></li>
+<li><div><h3>Negociação e escritura</h3><p>Filtramos os interessados, conduzimos a negociação e acompanhamos até ao registo em nome do comprador.</p></div></li>
+</ol>
+</div>
+<div class="vcard" data-reveal>
+<h3>Fale com o nosso Director Geral</h3>
+<p>Carlos Morais responde pessoalmente a proprietários e investidores.</p>
+<div class="vtel">
+<a href="tel:+244922284999"><svg aria-hidden="true"><use href="#ic-phone"/></svg><span>+244 922 284 999<small>Luanda · Seg–Sáb, 8h–18h</small></span></a>
+<a href="tel:+351969912742"><svg aria-hidden="true"><use href="#ic-phone"/></svg><span>+351 969 912 742<small>Portugal · linha da diáspora</small></span></a>
+<a href="https://wa.me/244922284999?text=Ol%C3%A1%2C%20quero%20anunciar%20um%20im%C3%B3vel%20com%20a%20House4Us." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#ic-wa"/></svg><span>WhatsApp<small>resposta no mesmo dia útil</small></span></a>
+</div>
+<p class="vnote">Avaliação sem compromisso · Comissão apenas em caso de negócio concluído</p>
+</div>
+</div></section>
+
+<!-- ============ GUIAS ============ -->
+<section class="section section--tint" id="guias"><div class="wrap">
+<div class="sec-head" data-reveal>
+<div>
+<p class="overline">Recursos para compradores</p>
+<h2 class="h2">Guias para decidir com confiança</h2>
+<p class="lede">Conteúdos práticos sobre o processo de compra em Luanda — escritos pela nossa equipa.</p>
+</div>
+</div>
+<div class="ggrid" data-reveal>
+<article class="gcard">
+<div class="gmedia"><svg aria-hidden="true"><use href="#sc-apartment"/></svg><span class="gtag">Guia · 8 min</span></div>
+<div class="gbody">
+<h3>Comprar casa em Luanda: o processo passo a passo</h3>
+<p>Do sinal à escritura — prazos, custos e quem faz o quê em cada etapa.</p>
+<a class="glink" href="#guias">Ler o guia<svg aria-hidden="true"><use href="#ic-arrow"/></svg></a>
+</div>
+</article>
+<article class="gcard">
+<div class="gmedia"><svg aria-hidden="true"><use href="#sc-terreno"/></svg><span class="gtag">Documentação</span></div>
+<div class="gbody">
+<h3>Título, certidão e ónus: o que conferir antes de pagar</h3>
+<p>Os três documentos que evitam a maioria dos problemas — e como pedi-los.</p>
+<a class="glink" href="#guias">Ler o guia<svg aria-hidden="true"><use href="#ic-arrow"/></svg></a>
+</div>
+</article>
+<article class="gcard">
+<div class="gmedia"><svg aria-hidden="true"><use href="#sc-towers"/></svg><span class="gtag">Zonas</span></div>
+<div class="gbody">
+<h3>Talatona, Kilamba ou Ilha? Escolher a zona certa</h3>
+<p>Preços médios, perfil de cada bairro e para quem faz mais sentido.</p>
+<a class="glink" href="#guias">Ler o guia<svg aria-hidden="true"><use href="#ic-arrow"/></svg></a>
+</div>
+</article>
+</div>
+</div></section>
+
+<!-- ============ TESTEMUNHOS ============ -->
+<section class="section" id="testemunhos"><div class="wrap">
+<div class="sec-head" data-reveal>
+<div>
+<p class="overline">Testemunhos</p>
+<h2 class="h2">Quem já negociou connosco</h2>
+<p class="lede">Exemplos ilustrativos incluídos no protótipo — serão substituídos por testemunhos reais de clientes da House4Us.</p>
+</div>
+</div>
+<div class="tgrid" data-reveal>
+<div class="tcard">
+<div class="tstars" aria-label="5 estrelas">★★★★★</div>
+<blockquote>«Vi a casa numa sexta-feira por videochamada e no mês seguinte assinei a escritura em Lisboa, por procuração. Processo impecável do princípio ao fim.»</blockquote>
+<div class="tperson"><span class="tava">JM</span><span><b>João M.</b><span>Comprou T3 · Talatona</span></span></div>
+</div>
+<div class="tcard">
+<div class="tstars" aria-label="5 estrelas">★★★★★</div>
+<blockquote>«A House4Us foi a única agência que me mostrou a certidão do imóvel antes de eu pagar o sinal. Para mim, isso diz tudo.»</blockquote>
+<div class="tperson"><span class="tava">LK</span><span><b>Lúcia K.</b><span>Comprou vivenda · Benfica</span></span></div>
+</div>
+<div class="tcard">
+<div class="tstars" aria-label="5 estrelas">★★★★★</div>
+<blockquote>«Arrendaram o meu apartamento em duas semanas, com contrato registado e inquilino verificado. Recomendo a qualquer proprietário.»</blockquote>
+<div class="tperson"><span class="tava">PA</span><span><b>Paulo A.</b><span>Proprietário · Kilamba</span></span></div>
+</div>
+</div>
+</div></section>
+
+<!-- ============ FAQ ============ -->
+<section class="section section--tint" id="faq"><div class="wrap">
+<div class="sec-head" data-reveal>
+<div>
+<p class="overline">Perguntas frequentes</p>
+<h2 class="h2">Tudo o que precisa de saber</h2>
+</div>
+</div>
+<div class="faq" data-reveal>
+<details>
+<summary>Quanto custa procurar casa com a House4Us?<svg aria-hidden="true"><use href="#ic-plus"/></svg></summary>
+<div class="fa">Nada. A pesquisa, as visitas e o aconselhamento são gratuitos para quem procura. A nossa comissão é paga pelo proprietário, e apenas quando o negócio se concretiza.</div>
+</details>
+<details>
+<summary>Que documentos devo exigir antes de comprar?<svg aria-hidden="true"><use href="#ic-plus"/></svg></summary>
+<div class="fa">No mínimo: o título de propriedade (ou direito de superfície), a certidão predial actualizada e a prova de que não existem ónus ou hipotecas sobre o imóvel. A House4Us confere estes documentos antes de publicar qualquer anúncio.</div>
+</details>
+<details>
+<summary>Vivo fora de Angola. Consigo comprar à distância?<svg aria-hidden="true"><use href="#ic-plus"/></svg></summary>
+<div class="fa">Sim. Fazemos visitas guiadas por videochamada, enviamos a documentação para análise e a escritura pode ser feita por procuração, com o nosso acompanhamento no notário. Temos linha directa em Portugal: +351 969 912 742.</div>
+</details>
+<details>
+<summary>Fazem avaliação de imóveis?<svg aria-hidden="true"><use href="#ic-plus"/></svg></summary>
+<div class="fa">Sim, com relatório de valor de mercado baseado em comparáveis reais da zona, entregue em 72 horas. Para proprietários que anunciam connosco, a avaliação é gratuita.</div>
+</details>
+<details>
+<summary>Como anuncio o meu imóvel convosco?<svg aria-hidden="true"><use href="#ic-plus"/></svg></summary>
+<div class="fa">Ligue ou envie WhatsApp para +244 922 284 999 com a zona e a tipologia do imóvel. Agendamos a visita de avaliação e tratamos da fotografia, do anúncio e do processo documental.</div>
+</details>
+</div>
+</div></section>
+
+<!-- ============ ESCRITÓRIOS ============ -->
+<section class="section" id="contacto"><div class="wrap">
+<div class="sec-head" data-reveal>
+<div>
+<p class="overline">Visite-nos</p>
+<h2 class="h2">Dois escritórios em Luanda</h2>
+</div>
+</div>
+<div class="egrid" data-reveal>
+<div class="ecard">
+<div class="emap"><svg aria-hidden="true"><use href="#mp-base"/></svg></div>
+<div class="ebody">
+<h3>House4Us · Talatona</h3>
+<address>Espaço Avenida, Bloco Alfa, 2.º andar, Loja 12<br>Talatona · Luanda</address>
+<div class="emeta">
+<span><svg aria-hidden="true"><use href="#ic-clock"/></svg>Seg–Sex · 8h–17h</span>
+<a href="tel:+244922284999"><svg aria-hidden="true"><use href="#ic-phone"/></svg>+244 922 284 999</a>
+</div>
+</div>
+</div>
+<div class="ecard">
+<div class="emap"><svg aria-hidden="true"><use href="#mp-base"/></svg></div>
+<div class="ebody">
+<h3>House4Us · Ilha do Cabo</h3>
+<address>Av. Mutamba Mohamed, Casa do Desporto, n.º 10<br>Ilha do Cabo · Luanda</address>
+<div class="emeta">
+<span><svg aria-hidden="true"><use href="#ic-clock"/></svg>Seg–Sáb · 9h–18h</span>
+<a href="tel:+244922284999"><svg aria-hidden="true"><use href="#ic-phone"/></svg>+244 922 284 999</a>
+</div>
+</div>
+</div>
+</div>
+</div></section>
+</main>
+
+<!-- ============ RODAPÉ ============ -->
+<footer class="site-foot"><div class="wrap">
+<div class="foot-top">
+<div class="foot-brand">
+<a class="brand" href="#topo"><svg aria-hidden="true"><use href="#lg-mark"/></svg><span class="brand-txt"><b>House<i>4</i>Us</b><span>Mediação Imobiliária</span></span></a>
+<p>Compra, venda e arrendamento em Luanda, com documentação conferida e apoio dedicado à diáspora angolana.</p>
+<div class="socials">
+<a href="#topo" aria-label="Facebook"><svg aria-hidden="true"><use href="#ic-fb"/></svg></a>
+<a href="#topo" aria-label="Instagram"><svg aria-hidden="true"><use href="#ic-ig"/></svg></a>
+<a href="#topo" aria-label="LinkedIn"><svg aria-hidden="true"><use href="#ic-li"/></svg></a>
+<a href="#topo" aria-label="YouTube"><svg aria-hidden="true"><use href="#ic-yt"/></svg></a>
+</div>
+</div>
+<div>
+<h4>Imóveis</h4>
+<ul>
+<li><a href="#destaques" data-nav-neg="venda">Comprar</a></li>
+<li><a href="#destaques" data-nav-neg="arrendamento">Arrendar</a></li>
+<li><a href="#destaques">Em destaque</a></li>
+<li><a href="#zonas">Por zona</a></li>
+</ul>
+</div>
+<div>
+<h4>Empresa</h4>
+<ul>
+<li><a href="#porque">Porquê a House4Us</a></li>
+<li><a href="#vender">Anunciar imóvel</a></li>
+<li><a href="#guias">Guias</a></li>
+<li><a href="#faq">Perguntas frequentes</a></li>
+</ul>
+</div>
+<div>
+<h4>Zonas</h4>
+<ul>
+<li><a href="#destaques" data-zona-link="Talatona">Talatona</a></li>
+<li><a href="#destaques" data-zona-link="Ilha do Cabo">Ilha do Cabo</a></li>
+<li><a href="#destaques" data-zona-link="Kilamba">Kilamba</a></li>
+<li><a href="#destaques" data-zona-link="Miramar">Miramar</a></li>
+<li><a href="#destaques" data-zona-link="Benfica">Benfica</a></li>
+<li><a href="#destaques" data-zona-link="Ingombota">Ingombota</a></li>
+</ul>
+</div>
+<div class="foot-contact">
+<h4>Contactos</h4>
+<ul>
+<li><svg aria-hidden="true"><use href="#ic-pin"/></svg>Espaço Avenida, Bl. Alfa, 2.º andar, Loja 12 — Talatona</li>
+<li><svg aria-hidden="true"><use href="#ic-pin"/></svg>Av. Mutamba Mohamed, Casa do Desporto, n.º 10 — Ilha do Cabo</li>
+<li><svg aria-hidden="true"><use href="#ic-phone"/></svg><a href="tel:+244922284999">+244 922 284 999</a></li>
+<li><svg aria-hidden="true"><use href="#ic-phone"/></svg><a href="tel:+351969912742">+351 969 912 742</a></li>
+</ul>
+</div>
+</div>
+<div class="foot-bot">
+<span>© 2026 House4Us — Mediação Imobiliária · Luanda, Angola</span>
+<span>Protótipo de demonstração · Dados fictícios · Desenvolvido por ONE TIC SOLUTION, Lda.</span>
+</div>
+</div></footer>
+
+<!-- WhatsApp flutuante -->
+<a class="fab" href="https://wa.me/244922284999?text=Ol%C3%A1%2C%20vi%20o%20site%20da%20House4Us%20e%20gostava%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+<svg aria-hidden="true"><use href="#ic-wa"/></svg><span>WhatsApp</span>
+</a>
+
+<!-- ============ MODAL DE FICHA ============ -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+<div class="mbox">
+<div class="mmedia">
+<svg id="mScene" aria-hidden="true"><use href="#sc-villa"/></svg>
+<span class="pbadge" id="mBadge">Venda</span>
+<button class="mclose" id="mFechar" aria-label="Fechar ficha"><svg aria-hidden="true"><use href="#ic-close"/></svg></button>
+</div>
+<div class="mbody">
+<div>
+<h3 class="mtitle" id="mTitle"></h3>
+<p class="pplace"><svg aria-hidden="true"><use href="#ic-pin"/></svg><span id="mZona"></span></p>
+<p class="mprice" id="mPreco"></p>
+<div class="mspecs" id="mSpecs"></div>
+<p class="mdesc" id="mDesc"></p>
+<div class="mextras" id="mExtras"></div>
+</div>
+<aside class="magent">
+<div class="magent-p"><span class="mava">CM</span><span><b>Carlos Morais</b><span>Director Geral · House4Us</span></span></div>
+<a class="btn btn--red" id="mWa" href="#" target="_blank" rel="noopener"><svg class="bi" aria-hidden="true"><use href="#ic-wa"/></svg>Pedir informações</a>
+<a class="btn btn--ghost" href="tel:+244922284999"><svg class="bi" aria-hidden="true"><use href="#ic-phone"/></svg>+244 922 284 999</a>
+<p class="mref" id="mRef"></p>
+</aside>
+</div>
+</div>
+</div>
+
+<script>
+(function(){
+"use strict";
+/* Câmbio indicativo apenas para demonstração: 1 EUR = 1.100 Kz */
+var TAXA_EUR=1100;
+
+/* Carteira de demonstração — dados fictícios do protótipo */
+var IMOVEIS=[
+{ref:"H4U-0101",t:"Vivenda V4 com piscina em condomínio",zona:"Talatona",sub:"Condomínio fechado",tip:"Vivenda",neg:"venda",preco:185000000,area:380,q:4,wc:4,cena:"sc-villa",faixa:"m",extras:["Piscina","Gerador","Furo de água","Segurança 24h","Cozinha equipada"],desc:"Vivenda moderna de dois pisos em condomínio fechado, com piscina privada, quintal e anexo. Acabamentos de primeira linha e processo documental completo."},
+{ref:"H4U-0102",t:"Apartamento T3 com vista para a baía",zona:"Ingombota",sub:"Marginal de Luanda",tip:"T3",neg:"venda",preco:145000000,area:158,q:3,wc:3,cena:"sc-office",faixa:"m",extras:["Vista mar","Elevador","Estacionamento","Gerador do prédio"],desc:"T3 no coração da Baixa, com sala ampla virada para a baía, suite principal e duas vagas de garagem. Prédio com gerador e segurança 24 horas."},
+{ref:"H4U-0103",t:"Moradia T3 em frente à praia",zona:"Ilha do Cabo",sub:"Primeira linha de mar",tip:"T3",neg:"arrendamento",preco:1800000,area:210,q:3,wc:2,cena:"sc-beach",faixa:"a",extras:["Vista mar","Mobilado","Ar condicionado","Esplanada"],desc:"Moradia mobilada em primeira linha, com esplanada sobre a areia e acesso directo à praia. Ideal para habitação ou representação de empresa."},
+{ref:"H4U-0104",t:"Apartamento T2 renovado",zona:"Kilamba",sub:"Centralidade do Kilamba",tip:"T2",neg:"venda",preco:48000000,area:96,q:2,wc:1,cena:"sc-towers",faixa:"b",extras:["Cozinha equipada","Elevador","Renovado em 2025"],desc:"T2 totalmente renovado num dos blocos mais bem localizados da centralidade, perto de escolas e comércio. Pronto a habitar."},
+{ref:"H4U-0105",t:"Vivenda V5 clássica com jardim",zona:"Miramar",sub:"Zona diplomática",tip:"Vivenda",neg:"venda",preco:320000000,area:520,q:5,wc:5,cena:"sc-miramar",faixa:"a",extras:["Jardim","Vista mar","Anexo independente","Garagem para 4 viaturas"],desc:"Vivenda de traça clássica numa das ruas mais procuradas do Miramar, com jardim consolidado, anexo independente e vista sobre a baía."},
+{ref:"H4U-0106",t:"Apartamento T3 mobilado",zona:"Talatona",sub:"Zona Nova Vida",tip:"T3",neg:"arrendamento",preco:950000,area:142,q:3,wc:2,cena:"sc-apartment",faixa:"m",extras:["Mobilado","Piscina do condomínio","Ginásio"],desc:"T3 mobilado e decorado em condomínio com piscina, ginásio e segurança. Disponível de imediato, contrato mínimo de um ano."},
+{ref:"H4U-0107",t:"Escritório open space no 4.º piso",zona:"Ingombota",sub:"Baixa de Luanda",tip:"Escritório",neg:"arrendamento",preco:2400000,area:180,q:0,wc:2,cena:"sc-office",faixa:"a",extras:["Gerador","Estacionamento","Elevador","Ar condicionado central"],desc:"Open space de 180 m² com luz natural em todo o piso, duas salas de reunião envidraçadas e copa. Edifício com gerador e estacionamento rotativo."},
+{ref:"H4U-0108",t:"Terreno murado de 1.500 m²",zona:"Benfica",sub:"Junto à estrada principal",tip:"Terreno",neg:"venda",preco:55000000,area:1500,q:0,wc:0,cena:"sc-terreno",faixa:"b",extras:["Murado","Topografia plana","Água e energia na via"],desc:"Lote murado com frente de 30 metros para a via principal, topografia plana e infra-estruturas à porta. Documentação de superfície em ordem."},
+{ref:"H4U-0109",t:"Apartamento T1 mobilado",zona:"Maianga",sub:"Perto do Largo da Maianga",tip:"T1",neg:"arrendamento",preco:380000,area:58,q:1,wc:1,cena:"sc-apartment",faixa:"b",extras:["Mobilado","Varanda","Portaria"],desc:"T1 funcional e mobilado, óptimo para um jovem profissional, a minutos do centro. Prédio com portaria e água garantida."}
+];
+
+var estado={neg:"venda",zona:"todas",faixa:"todas",cat:"todas",moeda:"kz",todos:false};
+var guardados={},nGuardados=0,itemAberto=null;
+function $(s,c){return (c||document).querySelector(s)}
+function $$(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))}
+
+/* ---------- formatação ---------- */
+function fmtKz(n){return n.toLocaleString("pt-PT").replace(/[\u00A0\u202F ]/g,".")}
+function fmtPreco(i){
+  if(estado.moeda==="eur"){
+    var e=Math.round(i.preco/TAXA_EUR/100)*100;
+    return "\u2248 "+fmtKz(e)+" \u20AC"+(i.neg==="arrendamento"?" <small>/m\u00EAs</small>":"");
+  }
+  return fmtKz(i.preco)+" <small>Kz"+(i.neg==="arrendamento"?"/m\u00EAs":"")+"</small>";
+}
+
+/* ---------- filtros ---------- */
+function passaCat(i){
+  switch(estado.cat){
+    case "todas":return true;
+    case "apt":return /^T\d/.test(i.tip);
+    case "vivenda":return i.tip==="Vivenda";
+    case "escritorio":return i.tip==="Escrit\u00F3rio";
+    case "terreno":return i.tip==="Terreno";
+    case "piscina":return i.extras.join("|").indexOf("Piscina")>-1;
+    case "mar":return i.zona==="Ilha do Cabo"||i.zona==="Mussulo"||i.extras.indexOf("Vista mar")>-1;
+    case "ate75":return i.neg==="venda"&&i.preco<=75000000;
+    case "luxo":return i.neg==="venda"&&i.preco>=200000000;
+  }
+  return true;
+}
+function filtra(){
+  return IMOVEIS.filter(function(i){
+    return (estado.neg==="todos"||i.neg===estado.neg)
+      &&(estado.zona==="todas"||i.zona===estado.zona)
+      &&(estado.faixa==="todas"||i.faixa===estado.faixa)
+      &&passaCat(i);
+  });
+}
+
+/* ---------- cartões ---------- */
+function specHtml(i){
+  var s="";
+  if(i.q)s+='<span><svg aria-hidden="true"><use href="#ic-bed"/></svg>'+i.q+"</span>";
+  if(i.wc)s+='<span><svg aria-hidden="true"><use href="#ic-bath"/></svg>'+i.wc+"</span>";
+  s+='<span><svg aria-hidden="true"><use href="#ic-area"/></svg>'+fmtKz(i.area)+" m\u00B2</span>";
+  return s;
+}
+function cartao(i){
+  var badge=i.neg==="venda"?'<span class="pbadge pbadge--venda">Venda</span>':'<span class="pbadge">Arrendamento</span>';
+  var saved=guardados[i.ref]?" saved":"";
+  return '<article class="pcard" data-ref="'+i.ref+'" tabindex="0" role="button" aria-label="Ver ficha: '+i.t+'">'
+    +'<div class="pmedia"><svg aria-hidden="true"><use href="#'+i.cena+'"/></svg>'+badge
+    +'<button class="pheart'+saved+'" data-heart="'+i.ref+'" aria-label="Guardar im\u00F3vel"><svg aria-hidden="true"><use href="#ic-heart"/></svg></button></div>'
+    +'<div class="pbody"><div class="pprice">'+fmtPreco(i)+"</div>"
+    +'<h3 class="ptitle">'+i.t+"</h3>"
+    +'<p class="pplace"><svg aria-hidden="true"><use href="#ic-pin"/></svg>'+i.zona+" \u00B7 "+i.sub+"</p>"
+    +'<div class="pspecs">'+specHtml(i)+'<span class="pref">'+i.ref+"</span></div></div></article>";
+}
+var grid=$("#pgrid"),btnMais=$("#btnMais");
+function render(){
+  var lista=filtra();
+  var corte=estado.todos?lista:lista.slice(0,6);
+  grid.innerHTML=corte.length?corte.map(cartao).join(""):'<p class="empty">Nenhum im\u00F3vel corresponde a estes filtros. Experimente alargar a zona ou o or\u00E7amento.</p>';
+  if(lista.length>6&&!estado.todos){btnMais.hidden=false;btnMais.textContent="Mostrar todos os "+lista.length+" im\u00F3veis";}
+  else{btnMais.hidden=true;}
+}
+
+/* ---------- sincronizadores ---------- */
+var LBL={
+  venda:["Qualquer valor","At\u00E9 75M Kz","75M \u2013 200M Kz","Acima de 200M Kz"],
+  arrendamento:["Qualquer valor","At\u00E9 600 mil Kz/m\u00EAs","600 mil \u2013 1,5M Kz/m\u00EAs","Acima de 1,5M Kz/m\u00EAs"],
+  todos:["Qualquer valor","Econ\u00F3mico","Interm\u00E9dio","Premium"]
+};
+function actualizaPrecoLabels(){
+  var op=$("#fPreco").options,l=LBL[estado.neg]||LBL.todos,k;
+  for(k=0;k<4;k++)op[k].textContent=l[k];
+}
+function setNeg(v){
+  estado.neg=v;
+  $$(".stab").forEach(function(t){t.setAttribute("aria-selected",String(t.getAttribute("data-negocio")===v));});
+  $$(".chip[data-neg]").forEach(function(c){c.setAttribute("aria-pressed",String(c.getAttribute("data-neg")===v));});
+  actualizaPrecoLabels();render();
+}
+function setCat(v,vindoDoSelect){
+  estado.cat=(!vindoDoSelect&&estado.cat===v)?"todas":v;
+  $$(".cat").forEach(function(c){c.setAttribute("aria-pressed",String(c.getAttribute("data-cat")===estado.cat));});
+  var tipos={apt:1,vivenda:1,escritorio:1,terreno:1};
+  $("#fTipo").value=tipos[estado.cat]?estado.cat:"todas";
+  render();
+}
+function setZona(z){
+  estado.zona=z;
+  $("#fZona").value=z==="todas"?"todas":z;
+  render();
+}
+function irPara(id){
+  var el=document.getElementById(id);
+  if(!el||!el.scrollIntoView)return;
+  try{el.scrollIntoView({behavior:"smooth",block:"start"});}catch(e){}
+}
+
+/* ---------- guardados ---------- */
+function toggleGuardar(ref,btn){
+  if(guardados[ref]){delete guardados[ref];nGuardados--;btn.classList.remove("saved");}
+  else{guardados[ref]=true;nGuardados++;btn.classList.add("saved");}
+  var b=$("#savedBadge");b.textContent=nGuardados;b.hidden=nGuardados===0;
+}
+
+/* ---------- modal ---------- */
+var modal=$("#modal");
+function abrirModal(ref){
+  var i=IMOVEIS.filter(function(x){return x.ref===ref})[0];
+  if(!i)return;
+  itemAberto=i;
+  $("#mScene use").setAttribute("href","#"+i.cena);
+  var b=$("#mBadge");
+  b.textContent=i.neg==="venda"?"Venda":"Arrendamento";
+  b.className="pbadge"+(i.neg==="venda"?" pbadge--venda":"");
+  $("#mTitle").textContent=i.t;
+  $("#mZona").textContent=i.zona+" \u00B7 "+i.sub;
+  $("#mPreco").innerHTML=fmtPreco(i);
+  $("#mSpecs").innerHTML=specHtml(i);
+  $("#mDesc").textContent=i.desc;
+  $("#mExtras").innerHTML=i.extras.map(function(e){return "<span>"+e+"</span>"}).join("");
+  $("#mRef").textContent="Refer\u00EAncia "+i.ref;
+  $("#mWa").href="https://wa.me/244922284999?text="+encodeURIComponent("Ol\u00E1! Tenho interesse no im\u00F3vel "+i.ref+" \u2014 "+i.t+" ("+i.zona+"). Podem dar-me mais informa\u00E7\u00F5es?");
+  modal.classList.add("aberto");
+  document.body.classList.add("travado");
+  var f=$("#mFechar");if(f&&f.focus)f.focus();
+}
+function fecharModal(){
+  modal.classList.remove("aberto");
+  document.body.classList.remove("travado");
+  itemAberto=null;
+}
+
+/* ---------- menu móvel ---------- */
+var mm=$("#mmenu");
+function abrirMenu(){mm.classList.add("aberto");$("#btnMenu").setAttribute("aria-expanded","true");document.body.classList.add("travado");}
+function fecharMenu(){mm.classList.remove("aberto");$("#btnMenu").setAttribute("aria-expanded","false");document.body.classList.remove("travado");}
+
+/* ---------- ligações de eventos ---------- */
+grid.addEventListener("click",function(ev){
+  var alvo=ev.target;
+  while(alvo&&alvo!==grid&&!alvo.getAttribute("data-heart")&&!alvo.classList.contains("pcard"))alvo=alvo.parentNode;
+  if(!alvo||alvo===grid)return;
+  if(alvo.getAttribute&&alvo.getAttribute("data-heart")){ev.stopPropagation();toggleGuardar(alvo.getAttribute("data-heart"),alvo);return;}
+  if(alvo.classList.contains("pcard"))abrirModal(alvo.getAttribute("data-ref"));
+});
+grid.addEventListener("keydown",function(ev){
+  if((ev.key==="Enter"||ev.key===" ")&&ev.target.classList&&ev.target.classList.contains("pcard")){
+    ev.preventDefault();abrirModal(ev.target.getAttribute("data-ref"));
+  }
+});
+$$(".stab").forEach(function(t){t.addEventListener("click",function(){setNeg(t.getAttribute("data-negocio"));});});
+$$(".chip[data-neg]").forEach(function(c){c.addEventListener("click",function(){setNeg(c.getAttribute("data-neg"));});});
+$$(".cat").forEach(function(c){c.addEventListener("click",function(){setCat(c.getAttribute("data-cat"),false);});});
+$("#fTipo").addEventListener("change",function(){setCat(this.value==="todas"?"todas":this.value,true);});
+$("#fZona").addEventListener("change",function(){estado.zona=this.value;render();});
+$("#fPreco").addEventListener("change",function(){estado.faixa=this.value;render();});
+$("#btnProcurar").addEventListener("click",function(){render();irPara("destaques");});
+btnMais.addEventListener("click",function(){estado.todos=true;render();});
+$$(".spop button").forEach(function(b){b.addEventListener("click",function(){setZona(b.getAttribute("data-zona"));irPara("destaques");});});
+$$(".zcard").forEach(function(z){z.addEventListener("click",function(){setZona(z.getAttribute("data-zona"));irPara("destaques");});});
+$$("[data-zona-link]").forEach(function(a){a.addEventListener("click",function(){setZona(a.getAttribute("data-zona-link"));});});
+$$("[data-nav-neg]").forEach(function(a){a.addEventListener("click",function(){setNeg(a.getAttribute("data-nav-neg"));});});
+$$(".moeda-btn").forEach(function(b){
+  b.addEventListener("click",function(){
+    estado.moeda=b.getAttribute("data-moeda");
+    $$(".moeda-btn").forEach(function(x){x.setAttribute("aria-pressed",String(x===b));});
+    render();
+    if(itemAberto)$("#mPreco").innerHTML=fmtPreco(itemAberto);
+  });
+});
+$("#mFechar").addEventListener("click",fecharModal);
+modal.addEventListener("click",function(ev){if(ev.target===modal)fecharModal();});
+$("#btnMenu").addEventListener("click",abrirMenu);
+$("#btnMenuFechar").addEventListener("click",fecharMenu);
+mm.addEventListener("click",function(ev){if(ev.target===mm)fecharMenu();});
+$$(".mmenu-panel a").forEach(function(a){a.addEventListener("click",fecharMenu);});
+document.addEventListener("keydown",function(ev){
+  if(ev.key==="Escape"){
+    if(modal.classList.contains("aberto"))fecharModal();
+    if(mm.classList.contains("aberto"))fecharMenu();
+  }
+});
+var sh=$(".site-head");
+window.addEventListener("scroll",function(){sh.classList.toggle("scrolled",window.scrollY>6);},{passive:true});
+
+/* contagem de imóveis por zona */
+$$("[data-zcount]").forEach(function(el){
+  var z=el.getAttribute("data-zcount");
+  var n=IMOVEIS.filter(function(i){return i.zona===z}).length;
+  el.textContent=n===1?"1 im\u00F3vel em carteira":n+" im\u00F3veis em carteira";
+});
+
+/* revelação suave (com salvaguarda para ambientes sem IntersectionObserver) */
+var revs=$$("[data-reveal]");
+if("IntersectionObserver" in window){
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("is-in");io.unobserve(e.target);}});
+  },{threshold:.1});
+  revs.forEach(function(el,i){el.style.transitionDelay=(i%3)*60+"ms";io.observe(el);});
+}else{
+  revs.forEach(function(el){el.classList.add("is-in");});
+}
+
+/* arranque */
+actualizaPrecoLabels();
+render();
+})();
+</script>
+</body>
+</html>

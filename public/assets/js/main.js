@@ -5,15 +5,15 @@ var TAXA_EUR=1100;
 
 /* Carteira de demonstração — dados fictícios do protótipo */
 var IMOVEIS=[
-{ref:"H4U-0101",t:"Vivenda V4 com piscina em condomínio",zona:"Talatona",sub:"Condomínio fechado",tip:"Vivenda",neg:"venda",preco:185000000,area:380,q:4,wc:4,cena:"sc-villa",faixa:"m",extras:["Piscina","Gerador","Furo de água","Segurança 24h","Cozinha equipada"],desc:"Vivenda moderna de dois pisos em condomínio fechado, com piscina privada, quintal e anexo. Acabamentos de primeira linha e processo documental completo."},
-{ref:"H4U-0102",t:"Apartamento T3 com vista para a baía",zona:"Ingombota",sub:"Marginal de Luanda",tip:"T3",neg:"venda",preco:145000000,area:158,q:3,wc:3,cena:"sc-office",faixa:"m",extras:["Vista mar","Elevador","Estacionamento","Gerador do prédio"],desc:"T3 no coração da Baixa, com sala ampla virada para a baía, suite principal e duas vagas de garagem. Prédio com gerador e segurança 24 horas."},
-{ref:"H4U-0103",t:"Moradia T3 em frente à praia",zona:"Ilha do Cabo",sub:"Primeira linha de mar",tip:"T3",neg:"arrendamento",preco:1800000,area:210,q:3,wc:2,cena:"sc-beach",faixa:"a",extras:["Vista mar","Mobilado","Ar condicionado","Esplanada"],desc:"Moradia mobilada em primeira linha, com esplanada sobre a areia e acesso directo à praia. Ideal para habitação ou representação de empresa."},
-{ref:"H4U-0104",t:"Apartamento T2 renovado",zona:"Kilamba",sub:"Centralidade do Kilamba",tip:"T2",neg:"venda",preco:48000000,area:96,q:2,wc:1,cena:"sc-towers",faixa:"b",extras:["Cozinha equipada","Elevador","Renovado em 2025"],desc:"T2 totalmente renovado num dos blocos mais bem localizados da centralidade, perto de escolas e comércio. Pronto a habitar."},
-{ref:"H4U-0105",t:"Vivenda V5 clássica com jardim",zona:"Miramar",sub:"Zona diplomática",tip:"Vivenda",neg:"venda",preco:320000000,area:520,q:5,wc:5,cena:"sc-miramar",faixa:"a",extras:["Jardim","Vista mar","Anexo independente","Garagem para 4 viaturas"],desc:"Vivenda de traça clássica numa das ruas mais procuradas do Miramar, com jardim consolidado, anexo independente e vista sobre a baía."},
-{ref:"H4U-0106",t:"Apartamento T3 mobilado",zona:"Talatona",sub:"Zona Nova Vida",tip:"T3",neg:"arrendamento",preco:950000,area:142,q:3,wc:2,cena:"sc-apartment",faixa:"m",extras:["Mobilado","Piscina do condomínio","Ginásio"],desc:"T3 mobilado e decorado em condomínio com piscina, ginásio e segurança. Disponível de imediato, contrato mínimo de um ano."},
-{ref:"H4U-0107",t:"Escritório open space no 4.º piso",zona:"Ingombota",sub:"Baixa de Luanda",tip:"Escritório",neg:"arrendamento",preco:2400000,area:180,q:0,wc:2,cena:"sc-office",faixa:"a",extras:["Gerador","Estacionamento","Elevador","Ar condicionado central"],desc:"Open space de 180 m² com luz natural em todo o piso, duas salas de reunião envidraçadas e copa. Edifício com gerador e estacionamento rotativo."},
-{ref:"H4U-0108",t:"Terreno murado de 1.500 m²",zona:"Benfica",sub:"Junto à estrada principal",tip:"Terreno",neg:"venda",preco:55000000,area:1500,q:0,wc:0,cena:"sc-terreno",faixa:"b",extras:["Murado","Topografia plana","Água e energia na via"],desc:"Lote murado com frente de 30 metros para a via principal, topografia plana e infra-estruturas à porta. Documentação de superfície em ordem."},
-{ref:"H4U-0109",t:"Apartamento T1 mobilado",zona:"Maianga",sub:"Perto do Largo da Maianga",tip:"T1",neg:"arrendamento",preco:380000,area:58,q:1,wc:1,cena:"sc-apartment",faixa:"b",extras:["Mobilado","Varanda","Portaria"],desc:"T1 funcional e mobilado, óptimo para um jovem profissional, a minutos do centro. Prédio com portaria e água garantida."}
+{ref:"H4U-0101",t:"Vivenda V4 com piscina em condomínio",zona:"Talatona",sub:"Condomínio fechado",tip:"Vivenda",neg:"venda",preco:185000000,area:380,q:4,wc:4,cena:"sc-villa",foto:"assets/imagens/vivenda-piscina-luxo.jpg",faixa:"m",extras:["Piscina","Gerador","Furo de água","Segurança 24h","Cozinha equipada"],desc:"Vivenda moderna de dois pisos em condomínio fechado, com piscina privada, quintal e anexo. Acabamentos de primeira linha e processo documental completo."},
+{ref:"H4U-0102",t:"Apartamento T3 com vista para a baía",zona:"Ingombota",sub:"Marginal de Luanda",tip:"T3",neg:"venda",preco:145000000,area:158,q:3,wc:3,cena:"sc-office",foto:"assets/imagens/interior-cozinha-sala.webp",faixa:"m",extras:["Vista mar","Elevador","Estacionamento","Gerador do prédio"],desc:"T3 no coração da Baixa, com sala ampla virada para a baía, suite principal e duas vagas de garagem. Prédio com gerador e segurança 24 horas."},
+{ref:"H4U-0103",t:"Moradia T3 em frente à praia",zona:"Ilha do Cabo",sub:"Primeira linha de mar",tip:"T3",neg:"arrendamento",preco:1800000,area:210,q:3,wc:2,cena:"sc-beach",foto:"assets/imagens/moradia-frente-praia.jpg",faixa:"a",extras:["Vista mar","Mobilado","Ar condicionado","Esplanada"],desc:"Moradia mobilada em primeira linha, com esplanada sobre a areia e acesso directo à praia. Ideal para habitação ou representação de empresa."},
+{ref:"H4U-0104",t:"Apartamento T2 renovado",zona:"Kilamba",sub:"Centralidade do Kilamba",tip:"T2",neg:"venda",preco:48000000,area:96,q:2,wc:1,cena:"sc-towers",foto:"assets/imagens/interior-cozinha-jantar.jpg",faixa:"b",extras:["Cozinha equipada","Elevador","Renovado em 2025"],desc:"T2 totalmente renovado num dos blocos mais bem localizados da centralidade, perto de escolas e comércio. Pronto a habitar."},
+{ref:"H4U-0105",t:"Vivenda V5 clássica com jardim",zona:"Miramar",sub:"Zona diplomática",tip:"Vivenda",neg:"venda",preco:320000000,area:520,q:5,wc:5,cena:"sc-miramar",foto:"assets/imagens/vivenda-condominio-jardim.jpg",faixa:"a",extras:["Jardim","Vista mar","Anexo independente","Garagem para 4 viaturas"],desc:"Vivenda de traça clássica numa das ruas mais procuradas do Miramar, com jardim consolidado, anexo independente e vista sobre a baía."},
+{ref:"H4U-0106",t:"Apartamento T3 mobilado",zona:"Talatona",sub:"Zona Nova Vida",tip:"T3",neg:"arrendamento",preco:950000,area:142,q:3,wc:2,cena:"sc-apartment",foto:"assets/imagens/interior-sala-moderna.jpg",faixa:"m",extras:["Mobilado","Piscina do condomínio","Ginásio"],desc:"T3 mobilado e decorado em condomínio com piscina, ginásio e segurança. Disponível de imediato, contrato mínimo de um ano."},
+{ref:"H4U-0107",t:"Escritório open space no 4.º piso",zona:"Ingombota",sub:"Baixa de Luanda",tip:"Escritório",neg:"arrendamento",preco:2400000,area:180,q:0,wc:2,cena:"sc-office",foto:"assets/imagens/escritorio-open-space.jpg",faixa:"a",extras:["Gerador","Estacionamento","Elevador","Ar condicionado central"],desc:"Open space de 180 m² com luz natural em todo o piso, duas salas de reunião envidraçadas e copa. Edifício com gerador e estacionamento rotativo."},
+{ref:"H4U-0108",t:"Terreno murado de 1.500 m²",zona:"Benfica",sub:"Junto à estrada principal",tip:"Terreno",neg:"venda",preco:55000000,area:1500,q:0,wc:0,cena:"sc-terreno",foto:"assets/imagens/terreno-murado-1500m2.jpg",faixa:"b",extras:["Murado","Topografia plana","Água e energia na via"],desc:"Lote murado com frente de 30 metros para a via principal, topografia plana e infra-estruturas à porta. Documentação de superfície em ordem."},
+{ref:"H4U-0109",t:"Apartamento T1 mobilado",zona:"Maianga",sub:"Perto do Largo da Maianga",tip:"T1",neg:"arrendamento",preco:380000,area:58,q:1,wc:1,cena:"sc-apartment",foto:"assets/imagens/interior-sala-compacta.jpg",faixa:"b",extras:["Mobilado","Varanda","Portaria"],desc:"T1 funcional e mobilado, óptimo para um jovem profissional, a minutos do centro. Prédio com portaria e água garantida."}
 ];
 
 var estado={neg:"venda",zona:"todas",faixa:"todas",cat:"todas",moeda:"kz",todos:false};
@@ -63,11 +63,14 @@ function specHtml(i){
   s+='<span><svg aria-hidden="true"><use href="#ic-area"/></svg>'+fmtKz(i.area)+" m\u00B2</span>";
   return s;
 }
+function mediaHtml(i){
+  return i.foto?'<img src="'+i.foto+'" alt="" loading="lazy">':'<svg aria-hidden="true"><use href="#'+i.cena+'"/></svg>';
+}
 function cartao(i){
   var badge=i.neg==="venda"?'<span class="pbadge pbadge--venda">Venda</span>':'<span class="pbadge">Arrendamento</span>';
   var saved=guardados[i.ref]?" saved":"";
   return '<article class="pcard" data-ref="'+i.ref+'" tabindex="0" role="button" aria-label="Ver ficha: '+i.t+'">'
-    +'<div class="pmedia"><svg aria-hidden="true"><use href="#'+i.cena+'"/></svg>'+badge
+    +'<div class="pmedia">'+mediaHtml(i)+badge
     +'<button class="pheart'+saved+'" data-heart="'+i.ref+'" aria-label="Guardar im\u00F3vel"><svg aria-hidden="true"><use href="#ic-heart"/></svg></button></div>'
     +'<div class="pbody"><div class="pprice">'+fmtPreco(i)+"</div>"
     +'<h3 class="ptitle">'+i.t+"</h3>"
@@ -130,7 +133,9 @@ function abrirModal(ref){
   var i=IMOVEIS.filter(function(x){return x.ref===ref})[0];
   if(!i)return;
   itemAberto=i;
-  $("#mScene use").setAttribute("href","#"+i.cena);
+  var mFoto=$("#mFoto"),mScene=$("#mScene");
+  if(i.foto){mFoto.src=i.foto;mFoto.hidden=false;mScene.style.display="none";}
+  else{mScene.querySelector("use").setAttribute("href","#"+i.cena);mScene.style.display="";mFoto.hidden=true;}
   var b=$("#mBadge");
   b.textContent=i.neg==="venda"?"Venda":"Arrendamento";
   b.className="pbadge"+(i.neg==="venda"?" pbadge--venda":"");

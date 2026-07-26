@@ -42,10 +42,107 @@ var crumbZona=$("#dCrumbZona");
 crumbZona.textContent=item.zona;
 crumbZona.href="imoveis.html?zona="+encodeURIComponent(item.zona);
 
-var hero=$("#dHeroImg");
-if(item.foto){hero.src=item.foto;}
-else{hero.closest(".dhero").innerHTML+='<svg aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%"><use href="#'+item.cena+'"/></svg>';hero.hidden=true;}
-hero.alt=item.t;
+/* ---------- galeria de fotos ---------- */
+var pasta="assets/imagens/imoveis/"+item.ref+"/";
+var imagens=item.foto?[item.foto].concat((item.galeria||[]).map(function(f){return pasta+f;})):[];
+
+function renderGaleria(){
+  var galeriaEl=$("#dGaleria");
+  if(!imagens.length){
+    galeriaEl.closest(".dgaleria-wrap").hidden=true;
+    return;
+  }
+  var thumbs=imagens.slice(1,5);
+  var restantes=imagens.length-5;
+  galeriaEl.className="dgaleria dgaleria--t"+thumbs.length;
+  var html='<button type="button" class="dtile dprincipal" data-idx="0" aria-label="Ver foto 1 de '+imagens.length+'"><img src="'+imagens[0]+'" alt="'+item.t+'" loading="eager"></button>';
+  if(thumbs.length){
+    html+='<div class="dgaleria-thumbs">';
+    thumbs.forEach(function(src,i){
+      var idx=i+1,ultima=i===thumbs.length-1;
+      var overlay=(ultima&&restantes>0)?'<span class="dtile-mais">+'+restantes+' fotos</span>':"";
+      html+='<button type="button" class="dtile dthumb" data-idx="'+idx+'" aria-label="Ver foto '+(idx+1)+' de '+imagens.length+'"><img src="'+src+'" alt="" loading="lazy">'+overlay+'</button>';
+    });
+    html+="</div>";
+  }
+  galeriaEl.innerHTML=html;
+}
+renderGaleria();
+$("#dGaleria").addEventListener("click",function(ev){
+  var tile=ev.target.closest("[data-idx]");
+  if(!tile)return;
+  abrirLightbox(parseInt(tile.getAttribute("data-idx"),10));
+});
+
+/* ---------- lightbox ---------- */
+var lbIdx=0;
+function atualizarLightbox(){
+  $("#dlbImg").src=imagens[lbIdx];
+  $("#dlbImg").alt=item.t+" — foto "+(lbIdx+1);
+  $("#dlbConta").textContent=(lbIdx+1)+" / "+imagens.length;
+}
+function abrirLightbox(i){
+  lbIdx=i;
+  atualizarLightbox();
+  $("#dLightbox").classList.add("aberto");
+  document.body.classList.add("travado");
+}
+function fecharLightbox(){
+  $("#dLightbox").classList.remove("aberto");
+  document.body.classList.remove("travado");
+}
+function lbAnterior(){lbIdx=(lbIdx-1+imagens.length)%imagens.length;atualizarLightbox();}
+function lbSeguinte(){lbIdx=(lbIdx+1)%imagens.length;atualizarLightbox();}
+$("#dlbPrev").hidden=$("#dlbNext").hidden=imagens.length<=1;
+$("#dlbFechar").addEventListener("click",fecharLightbox);
+$("#dlbPrev").addEventListener("click",lbAnterior);
+$("#dlbNext").addEventListener("click",lbSeguinte);
+$("#dLightbox").addEventListener("click",function(ev){if(ev.target.id==="dLightbox")fecharLightbox();});
+document.addEventListener("keydown",function(ev){
+  if(!$("#dLightbox").classList.contains("aberto"))return;
+  if(ev.key==="Escape")fecharLightbox();
+  else if(ev.key==="ArrowLeft")lbAnterior();
+  else if(ev.key==="ArrowRight")lbSeguinte();
+});
+
+/* ---------- tour 360° (só quando o imóvel tem sequência de fotogrametria) ---------- */
+if(item.fotograma){
+  (function(){
+    var f=item.fotograma,pasta360=pasta+"fotograma/",frame=1;
+    var btn=$("#d360Btn"),painel=$("#d360"),img=$("#d360Img"),dica=$("#d360Dica");
+    function pad(n){return n<10?"00"+n:n<100?"0"+n:""+n;}
+    function srcFrame(n){return pasta360+"frame-"+pad(n)+".jpg";}
+    function atualizarFrame(){img.src=srcFrame(frame);}
+    btn.hidden=false;
+    btn.addEventListener("click",function(){
+      frame=1;atualizarFrame();dica.classList.remove("escondida");
+      painel.classList.add("aberto");
+      document.body.classList.add("travado");
+    });
+    function fechar(){
+      painel.classList.remove("aberto");
+      document.body.classList.remove("travado");
+    }
+    $("#d360Fechar").addEventListener("click",fechar);
+    painel.addEventListener("click",function(ev){if(ev.target===painel)fechar();});
+    document.addEventListener("keydown",function(ev){if(ev.key==="Escape"&&painel.classList.contains("aberto"))fechar();});
+
+    var arrastando=false,xInicial=0,frameInicial=1,PASSO=6;
+    img.addEventListener("pointerdown",function(ev){
+      arrastando=true;xInicial=ev.clientX;frameInicial=frame;
+      dica.classList.add("escondida");
+      img.setPointerCapture(ev.pointerId);
+    });
+    img.addEventListener("pointermove",function(ev){
+      if(!arrastando)return;
+      var deltaFrames=Math.round((ev.clientX-xInicial)/PASSO);
+      var novo=((frameInicial-1+deltaFrames)%f.n+f.n)%f.n+1;
+      if(novo!==frame){frame=novo;atualizarFrame();}
+    });
+    img.addEventListener("pointerup",function(){arrastando=false;});
+    img.addEventListener("pointercancel",function(){arrastando=false;});
+  })();
+}
 
 var badge=$("#dBadge");
 badge.textContent=item.neg==="venda"?"Venda":"Arrendamento";

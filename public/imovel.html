@@ -139,11 +139,12 @@
 <p class="crumb"><a href="index.html">Início</a><span>/</span><a href="imoveis.html">Imóveis</a><span>/</span><a id="dCrumbZona" href="imoveis.html"></a></p>
 </div></div>
 
-<!-- ============ HERÓI FOTOGRÁFICO ============ -->
-<div class="dhero">
-<img id="dHeroImg" alt="">
+<!-- ============ GALERIA DE FOTOS ============ -->
+<div class="dgaleria-wrap">
+<div class="dgaleria" id="dGaleria"></div>
 <span class="pbadge" id="dBadge">Venda</span>
 <button class="pheart" id="dHeart" aria-label="Guardar imóvel"><svg aria-hidden="true"><use href="#ic-heart"/></svg></button>
+<button type="button" class="d360-btn" id="d360Btn" hidden>🔄 Tour 360°</button>
 </div>
 
 <!-- ============ CONTEÚDO PRINCIPAL ============ -->
@@ -261,6 +262,22 @@
 <a class="fab" href="https://wa.me/244922284999?text=Ol%C3%A1%2C%20vi%20o%20site%20da%20House4Us%20e%20gostava%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
 <svg aria-hidden="true"><use href="#ic-wa"/></svg><span>WhatsApp</span>
 </a>
+
+<!-- ============ LIGHTBOX DE FOTOS ============ -->
+<div class="dlightbox" id="dLightbox" role="dialog" aria-modal="true" aria-label="Galeria de fotos">
+<button class="mclose" id="dlbFechar" aria-label="Fechar galeria"><svg aria-hidden="true"><use href="#ic-close"/></svg></button>
+<button class="dlb-nav dlb-prev" id="dlbPrev" aria-label="Foto anterior"><svg aria-hidden="true"><use href="#ic-arrow"/></svg></button>
+<img class="dlb-img" id="dlbImg" alt="">
+<button class="dlb-nav dlb-next" id="dlbNext" aria-label="Foto seguinte"><svg aria-hidden="true"><use href="#ic-arrow"/></svg></button>
+<span class="dlb-conta" id="dlbConta"></span>
+</div>
+
+<!-- ============ TOUR 360° ============ -->
+<div class="d360" id="d360" role="dialog" aria-modal="true" aria-label="Tour 360 graus do imóvel">
+<button class="mclose" id="d360Fechar" aria-label="Fechar tour 360°"><svg aria-hidden="true"><use href="#ic-close"/></svg></button>
+<img class="d360-img" id="d360Img" alt="Vista em 360 graus do imóvel" draggable="false">
+<p class="d360-dica" id="d360Dica">Arraste para rodar ⟷</p>
+</div>
 
 <script src="assets/js/dados.js" defer></script>
 <script src="assets/js/util.js" defer></script>

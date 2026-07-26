@@ -120,6 +120,7 @@ function initModal(){
     $("#mDesc").textContent=i.desc;
     $("#mExtras").innerHTML=i.extras.map(function(e){return "<span>"+e+"</span>"}).join("");
     $("#mRef").textContent="Referência "+i.ref;
+    $("#mVer").href="imovel.html?ref="+encodeURIComponent(i.ref);
     $("#mWa").href="https://wa.me/244922284999?text="+encodeURIComponent("Olá! Tenho interesse no imóvel "+i.ref+" — "+i.t+" ("+i.zona+"). Podem dar-me mais informações?");
     modal.classList.add("aberto");
     document.body.classList.add("travado");

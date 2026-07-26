@@ -23,8 +23,9 @@ function specHtml(i){
   s+='<span><svg aria-hidden="true"><use href="#ic-area"/></svg>'+fmtKz(i.area)+" m²</span>";
   return s;
 }
+var CARREGAR_ATTR='loading="lazy" onload="this.classList.add(\'carregada\')" onerror="this.classList.add(\'carregada\')"';
 function mediaHtml(i){
-  return i.foto?'<img src="'+i.foto+'" alt="" loading="lazy">':'<svg aria-hidden="true"><use href="#'+i.cena+'"/></svg>';
+  return i.foto?'<img src="'+i.foto+'" alt="'+i.t+'" '+CARREGAR_ATTR+'>':'<svg aria-hidden="true"><use href="#'+i.cena+'"/></svg>';
 }
 function cartao(i,moeda){
   var badge=i.neg==="venda"?'<span class="pbadge pbadge--venda">Venda</span>':'<span class="pbadge">Arrendamento</span>';
@@ -108,7 +109,13 @@ function initModal(){
     if(!i)return;
     itemAberto=i;
     var mFoto=$("#mFoto"),mScene=$("#mScene");
-    if(i.foto){mFoto.src=i.foto;mFoto.hidden=false;mScene.style.display="none";}
+    if(i.foto){
+      mFoto.classList.remove("carregada");
+      var marcarCarregada=function(){mFoto.classList.add("carregada");};
+      mFoto.onload=marcarCarregada;mFoto.onerror=marcarCarregada;
+      mFoto.src=i.foto;mFoto.alt=i.t;mFoto.hidden=false;mScene.style.display="none";
+      if(mFoto.complete)marcarCarregada();
+    }
     else{mScene.querySelector("use").setAttribute("href","#"+i.cena);mScene.style.display="";mFoto.hidden=true;}
     var b=$("#mBadge");
     b.textContent=i.neg==="venda"?"Venda":"Arrendamento";
@@ -180,6 +187,7 @@ function initReveal(){
 return {
   TAXA_EUR:TAXA_EUR,$:$,$$:$$,
   fmtKz:fmtKz,fmtPreco:fmtPreco,specHtml:specHtml,mediaHtml:mediaHtml,cartao:cartao,
+  CARREGAR_ATTR:CARREGAR_ATTR,
   Guardados:Guardados,Moeda:Moeda,actualizaSavedBadge:actualizaSavedBadge,
   initChrome:initChrome,initModal:initModal,ligarGrelha:ligarGrelha,initReveal:initReveal
 };

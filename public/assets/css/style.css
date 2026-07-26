@@ -148,7 +148,7 @@ button,input,select{font:inherit;color:inherit}
 .pmedia{position:relative;aspect-ratio:16/10.2;background:var(--bg-2);overflow:hidden}
 .pmedia svg,.pmedia img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .pcard:hover .pmedia img{transform:scale(1.04)}
-.pmedia img{transition:transform .4s var(--ease)}
+.pmedia img{transition:transform .4s var(--ease),opacity .4s ease}
 .pbadge{background:rgba(26,23,27,.82);color:#fff;font-size:10px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;padding:6px 11px;border-radius:999px;backdrop-filter:blur(4px)}
 .pmedia .pbadge{position:absolute;top:12px;left:12px}
 .pbadge--venda{background:var(--grad)}
@@ -157,6 +157,16 @@ button,input,select{font:inherit;color:inherit}
 .pheart svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2;color:var(--ink-2)}
 .pheart.saved svg{color:var(--red-500);fill:var(--red-500);animation:pop .35s var(--ease)}
 @keyframes pop{40%{transform:scale(1.35)}}
+
+/* ---------- esqueleto/shimmer + fade-in para fotos (partilhado entre cartões, modal e galeria) ---------- */
+@keyframes h4u-shimmer{0%{background-position:150% 0}100%{background-position:-50% 0}}
+.pmedia:has(img:not(.carregada)),.mmedia:has(img:not(.carregada)),.dtile:has(img:not(.carregada)){
+  background-image:linear-gradient(100deg,var(--bg-2) 35%,#fff 50%,var(--bg-2) 65%);
+  background-size:250% 100%;
+  animation:h4u-shimmer 1.4s ease-in-out infinite;
+}
+.pmedia img,.mmedia img,.dtile img,#dlbImg{opacity:0}
+.pmedia img.carregada,.mmedia img.carregada,.dtile img.carregada,#dlbImg.carregada{opacity:1}
 .pbody{padding:16px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
 .pprice{font-size:21px;font-weight:800;letter-spacing:-.02em;line-height:1}
 .pprice small{font-size:12.5px;font-weight:700;color:var(--mut);letter-spacing:0}
@@ -309,6 +319,7 @@ button,input,select{font:inherit;color:inherit}
 .modal.aberto .mbox{transform:none}
 .mmedia{position:relative;aspect-ratio:16/7.6;background:var(--bg-2);overflow:hidden}
 .mmedia svg,.mmedia img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.mmedia img{transition:opacity .4s ease}
 .mmedia .pbadge{position:absolute;top:14px;left:14px}
 
 /* ---------- botão de fechar reutilizável (modal, menu móvel, painel de filtros) ---------- */
@@ -478,7 +489,7 @@ body.travado{overflow:hidden}
 .dgaleria{display:grid;grid-template-columns:1.5fr 1fr;gap:6px;height:clamp(300px,46vw,520px);border-radius:var(--r-card);overflow:hidden}
 .dgaleria--t0{grid-template-columns:1fr}
 .dtile{position:relative;display:block;padding:0;border:0;background:var(--bg-2);cursor:pointer;overflow:hidden}
-.dtile img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s var(--ease)}
+.dtile img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s var(--ease),opacity .4s ease}
 .dtile:hover img{transform:scale(1.04)}
 .dtile-mais{position:absolute;inset:0;display:grid;place-items:center;background:rgba(18,12,18,.55);color:#fff;font-size:15px;font-weight:800}
 
@@ -500,6 +511,7 @@ body.travado{overflow:hidden}
 .dlightbox,.d360{position:fixed;inset:0;z-index:120;display:grid;place-items:center;background:rgba(10,7,10,.92);opacity:0;pointer-events:none;transition:opacity .25s var(--ease)}
 .dlightbox.aberto,.d360.aberto{opacity:1;pointer-events:auto}
 .dlb-img,.d360-img{max-width:min(92vw,1000px);max-height:86vh;object-fit:contain;border-radius:10px;user-select:none}
+#dlbImg{transition:opacity .4s ease}
 .dlb-nav{position:absolute;top:50%;translate:0 -50%;width:48px;height:48px;border-radius:50%;border:0;background:rgba(255,255,255,.12);color:#fff;display:grid;place-items:center;cursor:pointer;transition:background .2s var(--ease)}
 .dlb-nav:hover{background:rgba(255,255,255,.22)}
 .dlb-nav svg{width:20px;height:20px}

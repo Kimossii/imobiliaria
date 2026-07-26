@@ -55,13 +55,14 @@ function renderGaleria(){
   var thumbs=imagens.slice(1,5);
   var restantes=imagens.length-5;
   galeriaEl.className="dgaleria dgaleria--t"+thumbs.length;
-  var html='<button type="button" class="dtile dprincipal" data-idx="0" aria-label="Ver foto 1 de '+imagens.length+'"><img src="'+imagens[0]+'" alt="'+item.t+'" loading="eager"></button>';
+  var ONCARREGA='onload="this.classList.add(\'carregada\')" onerror="this.classList.add(\'carregada\')"';
+  var html='<button type="button" class="dtile dprincipal" data-idx="0" aria-label="Ver foto 1 de '+imagens.length+'"><img src="'+imagens[0]+'" alt="'+item.t+'" loading="eager" '+ONCARREGA+'></button>';
   if(thumbs.length){
     html+='<div class="dgaleria-thumbs">';
     thumbs.forEach(function(src,i){
       var idx=i+1,ultima=i===thumbs.length-1;
       var overlay=(ultima&&restantes>0)?'<span class="dtile-mais">+'+restantes+' fotos</span>':"";
-      html+='<button type="button" class="dtile dthumb" data-idx="'+idx+'" aria-label="Ver foto '+(idx+1)+' de '+imagens.length+'"><img src="'+src+'" alt="" loading="lazy">'+overlay+'</button>';
+      html+='<button type="button" class="dtile dthumb" data-idx="'+idx+'" aria-label="Ver foto '+(idx+1)+' de '+imagens.length+'"><img src="'+src+'" alt="'+item.t+' — foto '+(idx+1)+'" loading="lazy" '+ONCARREGA+'>'+overlay+'</button>';
     });
     html+="</div>";
   }
@@ -77,8 +78,13 @@ $("#dGaleria").addEventListener("click",function(ev){
 /* ---------- lightbox ---------- */
 var lbIdx=0;
 function atualizarLightbox(){
-  $("#dlbImg").src=imagens[lbIdx];
-  $("#dlbImg").alt=item.t+" — foto "+(lbIdx+1);
+  var img=$("#dlbImg");
+  img.classList.remove("carregada");
+  var marcarCarregada=function(){img.classList.add("carregada");};
+  img.onload=marcarCarregada;img.onerror=marcarCarregada;
+  img.src=imagens[lbIdx];
+  img.alt=item.t+" — foto "+(lbIdx+1);
+  if(img.complete)marcarCarregada();
   $("#dlbConta").textContent=(lbIdx+1)+" / "+imagens.length;
 }
 function abrirLightbox(i){

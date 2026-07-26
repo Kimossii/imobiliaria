@@ -2,7 +2,7 @@
 "use strict";
 var $=H4U.$,$$=H4U.$$;
 
-var estado={neg:"venda",zona:"todas",faixa:"todas",cat:"todas",todos:false};
+var estado={neg:"todos",zona:"todas",faixa:"todas",cat:"todas",todos:false};
 var grid=$("#pgrid"),btnMais=$("#btnMais");
 var modalApi=H4U.initModal();
 H4U.ligarGrelha(grid,modalApi);

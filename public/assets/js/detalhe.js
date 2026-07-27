@@ -119,11 +119,44 @@ if(item.fotograma){
     function pad(n){return n<10?"00"+n:n<100?"0"+n:""+n;}
     function srcFrame(n){return pasta360+"frame-"+pad(n)+".jpg";}
     function atualizarFrame(){img.src=srcFrame(frame);}
+
+    /* pré-carregamento: baixa todos os frames para o cache do navegador antes
+       do utilizador começar a arrastar, para o tour responder na hora (sem
+       pedido de rede a cada frame). Começa quando o botão entra no ecrã e usa
+       tempo ocioso + baixa prioridade para não competir com o resto da página. */
+    var precarregado=new Array(f.n+1).fill(false);
+    function precarregarFrame(n){
+      if(precarregado[n])return;
+      precarregado[n]=true;
+      var pre=new Image();
+      if("fetchPriority" in pre)pre.fetchPriority="low";
+      pre.src=srcFrame(n);
+    }
+    function precarregarTodos(){
+      var i=1;
+      function proximo(){
+        if(i>f.n)return;
+        precarregarFrame(i);
+        i++;
+        if(window.requestIdleCallback)requestIdleCallback(proximo);
+        else setTimeout(proximo,60);
+      }
+      proximo();
+    }
+    if(window.IntersectionObserver){
+      var obs=new IntersectionObserver(function(entries){
+        entries.forEach(function(e){if(e.isIntersecting){precarregarTodos();obs.disconnect();}});
+      });
+      obs.observe(btn);
+    }
+
     btn.hidden=false;
     btn.addEventListener("click",function(){
+      precarregarFrame(1);
       frame=1;atualizarFrame();dica.classList.remove("escondida");
       painel.classList.add("aberto");
       document.body.classList.add("travado");
+      precarregarTodos();
     });
     function fechar(){
       painel.classList.remove("aberto");

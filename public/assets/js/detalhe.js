@@ -158,28 +158,99 @@ if(item.fotograma){
       document.body.classList.add("travado");
       precarregarTodos();
     });
+    /* ---------- zoom (scroll/pinça + duplo-clique) ---------- */
+    var ZOOM_MIN=1,ZOOM_MAX=3,ZOOM_DUPLO=2.2;
+    var zoom=ZOOM_MIN,panX=0,panY=0;
+    function aplicarZoom(){
+      img.style.transform="scale("+zoom+") translate("+panX+"px,"+panY+"px)";
+      img.classList.toggle("d360-zoomed",zoom>ZOOM_MIN);
+    }
+    function limitarPan(){
+      var maxX=(img.offsetWidth*(zoom-1))/(2*zoom);
+      var maxY=(img.offsetHeight*(zoom-1))/(2*zoom);
+      panX=Math.max(-maxX,Math.min(maxX,panX));
+      panY=Math.max(-maxY,Math.min(maxY,panY));
+    }
+    function definirZoom(novoZoom,ancoraX,ancoraY){
+      novoZoom=Math.max(ZOOM_MIN,Math.min(ZOOM_MAX,novoZoom));
+      if(ancoraX!==undefined&&zoom!==novoZoom){
+        var rect=img.getBoundingClientRect();
+        var dx=ancoraX-(rect.left+rect.width/2),dy=ancoraY-(rect.top+rect.height/2);
+        panX+=dx*(1/zoom-1/novoZoom);
+        panY+=dy*(1/zoom-1/novoZoom);
+      }
+      zoom=novoZoom;
+      if(zoom===ZOOM_MIN){panX=0;panY=0;}
+      limitarPan();
+      aplicarZoom();
+    }
+    function resetarZoom(){zoom=ZOOM_MIN;panX=0;panY=0;aplicarZoom();}
+
+    img.addEventListener("wheel",function(ev){
+      ev.preventDefault();
+      definirZoom(zoom*(ev.deltaY<0?1.25:0.8),ev.clientX,ev.clientY);
+    },{passive:false});
+    img.addEventListener("dblclick",function(ev){
+      definirZoom(zoom>ZOOM_MIN?ZOOM_MIN:ZOOM_DUPLO,ev.clientX,ev.clientY);
+    });
+
     function fechar(){
       painel.classList.remove("aberto");
       document.body.classList.remove("travado");
+      resetarZoom();
     }
     $("#d360Fechar").addEventListener("click",fechar);
     painel.addEventListener("click",function(ev){if(ev.target===painel)fechar();});
     document.addEventListener("keydown",function(ev){if(ev.key==="Escape"&&painel.classList.contains("aberto"))fechar();});
 
-    var arrastando=false,xInicial=0,frameInicial=1,PASSO=6;
+    /* ---------- arrasto: roda os frames com zoom normal, faz pan quando ampliado; dois dedos fazem pinça ---------- */
+    var ponteiros={};
+    function contarPonteiros(){return Object.keys(ponteiros).length;}
+    var arrastando=false,xInicial=0,yInicial=0,frameInicial=1,panXInicial=0,panYInicial=0,PASSO=6;
+    var pinca=null;
+
     img.addEventListener("pointerdown",function(ev){
-      arrastando=true;xInicial=ev.clientX;frameInicial=frame;
-      dica.classList.add("escondida");
       img.setPointerCapture(ev.pointerId);
+      ponteiros[ev.pointerId]={x:ev.clientX,y:ev.clientY};
+      if(contarPonteiros()===2){
+        arrastando=false;
+        var ids=Object.keys(ponteiros),p1=ponteiros[ids[0]],p2=ponteiros[ids[1]];
+        pinca={distancia:Math.hypot(p2.x-p1.x,p2.y-p1.y),zoomInicial:zoom};
+        return;
+      }
+      arrastando=true;xInicial=ev.clientX;yInicial=ev.clientY;frameInicial=frame;
+      panXInicial=panX;panYInicial=panY;
+      dica.classList.add("escondida");
     });
     img.addEventListener("pointermove",function(ev){
+      if(!(ev.pointerId in ponteiros))return;
+      ponteiros[ev.pointerId]={x:ev.clientX,y:ev.clientY};
+      if(pinca&&contarPonteiros()===2){
+        var ids=Object.keys(ponteiros),p1=ponteiros[ids[0]],p2=ponteiros[ids[1]];
+        var distancia=Math.hypot(p2.x-p1.x,p2.y-p1.y);
+        var meioX=(p1.x+p2.x)/2,meioY=(p1.y+p2.y)/2;
+        definirZoom(pinca.zoomInicial*(distancia/pinca.distancia),meioX,meioY);
+        return;
+      }
       if(!arrastando)return;
+      if(zoom>ZOOM_MIN){
+        panX=panXInicial+(ev.clientX-xInicial)/zoom;
+        panY=panYInicial+(ev.clientY-yInicial)/zoom;
+        limitarPan();
+        aplicarZoom();
+        return;
+      }
       var deltaFrames=Math.round((ev.clientX-xInicial)/PASSO);
       var novo=((frameInicial-1+deltaFrames)%f.n+f.n)%f.n+1;
       if(novo!==frame){frame=novo;atualizarFrame();}
     });
-    img.addEventListener("pointerup",function(){arrastando=false;});
-    img.addEventListener("pointercancel",function(){arrastando=false;});
+    function soltarPonteiro(ev){
+      delete ponteiros[ev.pointerId];
+      if(contarPonteiros()<2)pinca=null;
+      if(contarPonteiros()===0)arrastando=false;
+    }
+    img.addEventListener("pointerup",soltarPonteiro);
+    img.addEventListener("pointercancel",soltarPonteiro);
   })();
 }
 

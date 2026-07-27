@@ -521,7 +521,8 @@ body.travado{overflow:hidden}
 .dlb-conta{position:absolute;bottom:20px;left:50%;translate:-50% 0;color:#fff;font-size:12.5px;font-weight:700;background:rgba(255,255,255,.12);padding:6px 14px;border-radius:999px}
 .dlightbox .mclose,.d360 .mclose{position:absolute;top:18px;right:18px}
 
-.d360-img{cursor:grab;touch-action:pan-y}
+.d360-img{cursor:grab;touch-action:none}
+.d360-img.d360-zoomed{cursor:move}
 .d360-dica{position:absolute;bottom:26px;left:50%;translate:-50% 0;color:#fff;font-size:13px;font-weight:700;background:rgba(255,255,255,.14);padding:8px 16px;border-radius:999px;transition:opacity .3s var(--ease)}
 .d360-dica.escondida{opacity:0}
 
